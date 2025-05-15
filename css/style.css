@@ -82,6 +82,21 @@
     height: 60px;
 }
 
+/* Encabezados de las paginas de la web*/
+header h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  margin: 20px 0 10px;
+  color: #e91e63;
+}
+
+/* Titulo de las secciones de cada apartado */
+main h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #f4f4f4;
+}
 
 /* Footer de la web */
 footer {

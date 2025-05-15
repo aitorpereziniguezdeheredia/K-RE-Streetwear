@@ -4,39 +4,48 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tienda - KÖRE Streetwear</title>
-    <link rel="shortcut icon" href="assest/icon/icono-tienda.webp" />
-    <link rel="stylesheet" href="css/tienda.css">
+    <title>Contacto - KÖRE Streetwear</title>
+    <link rel="shortcut icon" href="../assest/icon/icono-tienda.webp" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tienda.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
+<!--EL CONTENIDO DE LA PÁGINA-->
 
 <body>
-    <!--EL CONTENIDO DE LA PÁGINA-->
+    <!------------CABECERA Y NAVEGACIÓN-------->
+    <header>
 
-    <body>
-        <!------------CABECERA Y NAVEGACIÓN-------->
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="index.html"><img src="assest/icon/icono-tienda.webp" alt="logo de la tienda"
-                                height="60" width="60"></a></li>
-                    <li><a href="nosotros.html" class="enlace">Nosotros</a></li>
-                    <li><a href="tienda.html" class="enlace">Tienda</a></li>
-                    <li><a href="contacto.html" class="enlace">Contacto</a></li>
-                    <li><a href="perfil.html" class="enlace">Perfil</a></li>
-                </ul>
-            </nav>
+        <!-- INPUT OCULTO QUE CONTROLA EL MENÚ -->
+        <input type="checkbox" id="menu-tienda" class="menu-tienda" />
 
+        <!-- ICONO DE MENÚ COMO LABEL -->
+        <label for="menu-tienda" class="material-symbols-outlined menu-icon">menu_open</label>
+
+        <!-- MENÚ LATERAL -->
+        <nav id="sideNav">
+            <ul>
+                <li><a href="../index.html"><img src="../assest/icon/icono-tienda.webp" alt="logo de la tienda"></a></li>
+                <li><a href="nosotros.html" class="enlace">Nosotros</a></li>
+                <li><a href="tienda.html" class="enlace">Tienda</a></li>
+                <li><a href="contacto.html" class="enlace">Contacto</a></li>
+                <li><a href="perfil.html" class="enlace">Perfil</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-content">
             <h1>KÖRE Streetwear</h1>
-        </header>
+        </div>
+    </header>
 
         <!------------CONTENIDO PRINCIPAL-------->
         <main>
             <h2>Nuestros productos</h2>
             <!-- Producto 1 -->
-            <section>
+            <section class="galeria-products">
 
                 <article>
-                    <img src="assest/image/tienda/camisa_blanca.webp" alt="Producto 1 camisa blanca">
+                    <img src="../assest/image/tienda/camisa_blanca.webp" alt="Producto 1 camisa blanca">
                     <h3>Camisa Blanca</h3>
                     <p>Precio: 25.00€</p>
                     <button>Comprar</button>
@@ -44,7 +53,7 @@
 
                 <!-- Producto 2 -->
                 <article>
-                    <img src="assest/image/tienda/pantalon_negro.webp" alt="Producto 2 pantalon negro">
+                    <img src="../assest/image/tienda/pantalon_negro.webp" alt="Producto 2 pantalon negro">
                     <h3>Pantalón Negro</h3>
                     <p>Precio: 40.00€</p>
                     <button>Comprar</button>
@@ -52,7 +61,7 @@
 
                 <!-- Producto 3 -->
                 <article>
-                    <img src="assest/image/tienda/chaqueta_jean.webp" alt="Producto 3 chaqueta jean">
+                    <img src="../assest/image/tienda/chaqueta_jean.webp" alt="Producto 3 chaqueta jean">
                     <h3>Chaqueta de Jean</h3>
                     <p>Precio: 60.00€</p>
                     <button>Comprar</button>
@@ -60,7 +69,37 @@
 
                 <!-- Producto 4 -->
                 <article>
-                    <img src="assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
+                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
+                    <h3>Vestido Rojo</h3>
+                    <p>Precio: 50.00€</p>
+                    <button>Comprar</button>
+                </article>
+                <article>
+                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
+                    <h3>Vestido Rojo</h3>
+                    <p>Precio: 50.00€</p>
+                    <button>Comprar</button>
+                </article>
+                <article>
+                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
+                    <h3>Vestido Rojo</h3>
+                    <p>Precio: 50.00€</p>
+                    <button>Comprar</button>
+                </article>
+                <article>
+                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
+                    <h3>Vestido Rojo</h3>
+                    <p>Precio: 50.00€</p>
+                    <button>Comprar</button>
+                </article>
+                <article>
+                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
+                    <h3>Vestido Rojo</h3>
+                    <p>Precio: 50.00€</p>
+                    <button>Comprar</button>
+                </article>
+                <article>
+                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
                     <h3>Vestido Rojo</h3>
                     <p>Precio: 50.00€</p>
                     <button>Comprar</button>

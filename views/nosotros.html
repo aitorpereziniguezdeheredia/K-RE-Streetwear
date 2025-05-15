@@ -3,26 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nosotros - KÖRE Streetwear</title>
-    <link rel="shortcut icon" href="assest/icon/icono-tienda.webp" />
-    <link rel="stylesheet" href="css/nosotros.css">
-  </head>
-    <!--EL CONTENIDO DE LA PÁGINA-->
-    <body>
-        <!------------CABECERA Y NAVEGACIÓN-------->
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="index.html"><img src="assest/icon/icono-tienda.webp" alt="logo de la tienda" height="60" width="60"></a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="tienda.html">Tienda</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="perfil.html">Perfil</a></li>
-                </ul>
-            </nav>
+    <title>Contacto - KÖRE Streetwear</title>
+    <link rel="shortcut icon" href="../assest/icon/icono-tienda.webp" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/nosotros.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<!--EL CONTENIDO DE LA PÁGINA-->
 
+<body>
+    <!------------CABECERA Y NAVEGACIÓN-------->
+    <header>
+
+        <!-- INPUT OCULTO QUE CONTROLA EL MENÚ -->
+        <input type="checkbox" id="menu-tienda" class="menu-tienda" />
+
+        <!-- ICONO DE MENÚ COMO LABEL -->
+        <label for="menu-tienda" class="material-symbols-outlined menu-icon">menu_open</label>
+
+        <!-- MENÚ LATERAL -->
+        <nav id="sideNav">
+            <ul>
+                <li><a href="../index.html"><img src="../assest/icon/icono-tienda.webp" alt="logo de la tienda"></a></li>
+                <li><a href="nosotros.html" class="enlace">Nosotros</a></li>
+                <li><a href="tienda.html" class="enlace">Tienda</a></li>
+                <li><a href="contacto.html" class="enlace">Contacto</a></li>
+                <li><a href="perfil.html" class="enlace">Perfil</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-content">
             <h1>KÖRE Streetwear</h1>
-        </header>
+        </div>
+    </header>
 
         <!------------CONTENIDO PRINCIPAL-------->
         <main>

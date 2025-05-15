@@ -1,10 +1,3 @@
-/* Reset y configuración general */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   background: linear-gradient(to bottom, #111 25%, #e91e63 75%);
   background-attachment: fixed;
@@ -14,68 +7,7 @@ body {
   color: #f4f4f4;
 }
 
-/* Navegación vertical oculta */
-header nav {
-  background-color: #222;
-  padding: 20px;
-  width: 200px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: -180px; /* Oculta fuera de la vista */
-  transition: left 0.3s ease;
-  z-index: 1000;
-}
-
-header nav:hover {
-  left: 0; /* Se muestra al pasar el mouse */
-}
-
-header nav ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-header nav li {
-  margin: 0 10px;
-}
-
-header nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 8px 12px;
-  transition: background 0.3s ease;
-}
-
-header nav a.enlace:hover {
-  background-color: #f4f4f4;
-  color: #111;
-  border-radius: 5px;
-}
-
-/* Encabezado */
-header h1 {
-  text-align: center;
-  font-size: 2.8rem;
-  margin-top: 20px;
-  color: #e91e63;
-}
-
-/* Sección de productos */
-main {
-  margin-left: 20px; /* Espacio para activar menú oculto */
-  transition: margin 0.3s ease;
-}
-
-main h2 {
-  text-align: center;
-}
-
-main section {
+/*main section {
   padding: 40px 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -83,12 +15,21 @@ main section {
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
+}*/
+
+main .galeria-products {  
+  margin-left: 200px;
+  margin-right: 200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 main section h2 {
   text-align: center;
   font-size: 2rem;
-  margin-bottom: 30px;
   color: #f4f4f4;
 }
 
@@ -98,23 +39,12 @@ article {
   border-radius: 10px;
   padding: 20px;
   text-align: center;
-  width: 250px;
+  width: 280px;
   height: 400px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
   align-items: center;
   transition: transform 0.3s ease;
-}
-
-article:hover {
-  transform: scale(1.03);
-}
-
-article h2 {
-  font-size: 1.3rem;
-  color: #e91e63;
-  margin-bottom: 10px;
 }
 
 article img {
@@ -128,6 +58,10 @@ article img {
 article p {
   color: #ccc;
   margin-bottom: 15px;
+}
+
+article:hover {
+  transform: scale(1.03);
 }
 
 /* Botones */
@@ -156,14 +90,4 @@ aside {
 aside button {
   visibility: hidden;
   background-color: #222;
-}
-
-/* Footer */
-footer {
-  background-color: #222;
-  color: #aaa;
-  text-align: center;
-  padding: 20px 0;
-  margin-top: 40px;
-  font-size: 0.9rem;
 }
