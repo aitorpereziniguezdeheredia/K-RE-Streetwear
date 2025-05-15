@@ -1,0 +1,122 @@
+body {
+  background: linear-gradient(to bottom, #111 25%, #e91e63 75%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f4f4f4;
+}
+
+/* Encabezado */
+header h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  margin: 20px 0;
+  color: #e91e63;
+}
+
+/* Contenido principal */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+main h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #f4f4f4;
+}
+
+main p {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #ccc;
+}
+
+/* Formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background-color: #1c1c1c;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #f4f4f4;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #333;
+  color: #f4f4f4;
+  resize: vertical;
+}
+
+textarea {
+  min-height: 120px;
+}
+
+input[type="submit"],
+input[type="reset"] {
+  background-color: #e91e63;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 120px;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+  background-color: #c2185b;
+}
+
+/* Aside (redes sociales) */
+aside {
+  text-align: center;
+  padding: 30px 10px;
+}
+
+aside p {
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+aside img {
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+}
+
+aside img:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  main {
+    padding: 20px;
+  }
+
+  form {
+    padding: 20px;
+  }
+}

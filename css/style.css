@@ -1,0 +1,93 @@
+/* Reset de la web */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Menu navegacion lateral de la web */
+/* ------------------------------------------------------------------------- */
+/* Ocultar el input del menú */
+.menu-tienda {
+    display: none;
+}
+
+/* Estilo del ícono del menú */
+.menu-icon {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 8px;
+    border-radius: 4px;
+    transition: left 0.5s ease;
+    z-index: 2;
+}
+
+/* Menú lateral */
+#sideNav {
+    background-color: #222;
+    padding: 20px;
+    width: 140px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -150px; /* Oculto inicialmente */
+    transition: left 0.5s ease;
+    z-index: 1;
+}
+
+/* Mostrar el menú cuando el input está marcado */
+.menu-tienda:checked ~ #sideNav {
+    left: 0;
+
+}
+
+/* Mover el icono del menu a la vez que sale el menu lateral*/
+.menu-tienda:checked ~ .menu-icon {
+    left: 160px; /* que son 140px del menú + 20px margen */
+}
+
+#sideNav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+#sideNav li {
+    margin: 0 5px;
+}
+
+#sideNav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: background 0.3s ease;
+}
+
+#sideNav a.enlace:hover {
+    background-color: #f4f4f4;
+    color: #111;
+    border-radius: 5px;
+}
+
+#sideNav img {
+    width: 60px;
+    height: 60px;
+}
+
+
+/* Footer de la web */
+footer {
+    background-color: #222;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+}

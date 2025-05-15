@@ -1,0 +1,144 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to bottom, #111 25%, #e91e63 75%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f4f4f4;
+}
+
+/* Navegación vertical oculta */
+header nav {
+    background-color: #222;
+    padding: 20px;
+    width: 200px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -180px; /* Oculta fuera de la vista */
+    transition: left 0.3s ease;
+    z-index: 1000;
+}
+
+header nav:hover {
+    left: 0; /* Se muestra al pasar el mouse */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+
+header nav li {
+    margin: 0 10px;
+}
+
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: background 0.3s ease;
+}
+
+header nav a.enlace:hover {
+    background-color: #f4f4f4;
+    color: #111;
+    border-radius: 5px;
+}
+
+/* Encabezado principal */
+header h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  margin: 20px 0 10px;
+  color: #e91e63;
+}
+
+header p {
+  text-align: center;
+  font-style: italic;
+  color: #ccc;
+  margin-bottom: 20px;
+}
+
+/* Contenido principal */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+main h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #f4f4f4;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+article {
+  background-color: #1c1c1c;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+article h3 {
+  font-size: 1.5rem;
+  color: #e91e63;
+  margin-bottom: 10px;
+}
+
+article p,
+article ul {
+  color: #ccc;
+  font-size: 1rem;
+}
+
+article ul {
+  list-style: disc inside;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+/* Footer */
+footer {
+  background-color: #222;
+  color: #aaa;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  section {
+    padding: 0 10px;
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  main h2 {
+    font-size: 1.5rem;
+  }
+}
