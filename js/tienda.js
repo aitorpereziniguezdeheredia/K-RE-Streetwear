@@ -40,7 +40,7 @@ function renderizarGaleria() {
       boton.onclick = () => {
         productos.splice(index, 1);
         renderizarGaleria();
-        activarModoEliminar(); // Reaplica el modo eliminar tras render
+        activarModoEliminar(); //  Reaplica el modo eliminar tras render
       };
     }
 
