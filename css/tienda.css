@@ -1,25 +1,41 @@
-body {
+html, body {
   background: linear-gradient(to bottom, #111 25%, #e91e63 75%);
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #f4f4f4;
+  font-size: 1rem; /* base de 16px */
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 1rem 0;
+  background-color:  #222;
+  color: #f4f4f4;
+}
 /*main section {
-  padding: 40px 20px;
-  max-width: 1200px;
+  padding: 2.5rem 1.25rem;   40px 20px 
+  max-width: 75rem;           1200px 
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
+  gap: 1.25rem;               20px 
 }*/
 
-main .galeria-products {  
-  margin-left: 200px;
-  margin-right: 200px;
+main .galeria-products {
+  margin-left: 12.5rem;   /* 200px */
+  margin-right: 12.5rem;  /* 200px */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
@@ -29,18 +45,18 @@ main .galeria-products {
 
 main section h2 {
   text-align: center;
-  font-size: 2rem;
+  font-size: 2rem; /* 32px */
   color: #f4f4f4;
 }
 
 /* Productos */
 article {
   background-color: #1c1c1c;
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 0.625rem; /* 10px */
+  padding: 1.25rem;        /* 20px */
   text-align: center;
-  width: 280px;
-  height: 400px;
+  width: 17.5rem;          /* 280px */
+  height: 25rem;           /* 400px */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,16 +64,16 @@ article {
 }
 
 article img {
-  width: 200px;
-  height: 200px;
+  width: 12.5rem;          /* 200px */
+  height: 12.5rem;         /* 200px */
   object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  border-radius: 0.5rem;   /* 8px */
+  margin-bottom: 0.625rem; /* 10px */
 }
 
 article p {
   color: #ccc;
-  margin-bottom: 15px;
+  margin-bottom: 0.9375rem; /* 15px */
 }
 
 article:hover {
@@ -69,12 +85,13 @@ button {
   background-color: #e91e63;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  border-radius: 5px;
+  padding: 0.625rem 1.25rem; /* 10px 20px */
+  margin: 0.3125rem;          /* 5px */
+  border-radius: 0.3125rem;   /* 5px */
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s ease;
+  font-size: 1rem;
 }
 
 button:hover {
@@ -83,11 +100,238 @@ button:hover {
 
 /* Aside */
 aside {
-  margin: 20px;
+  margin: 1.25rem; /* 20px */
   text-align: center;
 }
 
 aside button {
-  visibility: hidden;
+  /*visibility: hidden;*/
   background-color: #222;
+}
+
+/*///////////////////////////PARTE NUEVA////////////////////////////////*/
+
+/* Contenedor principal dividido en dos columnas */
+.contenedor-section {
+  display: flex;
+  min-height: 100vh; /* altura completa de la ventana */
+  position: relative; /* para posicionar título absoluto */
+  flex-direction: row;
+}
+
+.oculto {
+  display: none;
+}
+
+/* Título principal centrado arriba de todo */
+.titulo-seccion {
+  position: absolute;
+  top: 1.25rem; /* 20px */
+  width: 100%;
+  text-align: center;
+  font-size: 2rem; /* 32px */
+  color: #333;
+  z-index: 1;
+}
+
+/* Lado izquierdo: fondo azul, centrado contenido */
+.izquierda,
+.derecha {
+  flex: 1; /* cada lado ocupa mitad */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.izquierda {
+  background-color: #3498db;
+}
+
+/* Lado derecho: verde, columna para título + tarjeta */
+.derecha {
+  background-color: #2ecc71;
+  flex-direction: column;
+  padding: 1.25rem; /* 20px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilo formulario */
+form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.875rem; /* 30px */
+  border-radius: 0.625rem; /* 10px */
+  display: flex;
+  flex-direction: column;
+  gap: 0.9375rem; /* 15px */
+  width: 18.75rem; /* 300px */
+}
+
+/* Etiquetas de los inputs */
+label {
+  font-size: 1rem;
+  color: white;
+}
+
+/* Inputs generales */
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+  padding: 0.5rem; /* 8px */
+  border: none;
+  border-radius: 0.3125rem; /* 5px */
+  outline: none;
+  font-size: 1rem;
+}
+
+/* Botón */
+button {
+  padding: 0.625rem; /* 10px */
+  background-color: #1abc9c;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.3125rem; /* 5px */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #16a085;
+}
+
+/* Título en el lado derecho */
+.vista-tienda {
+  text-align: center;
+  color: white;
+  margin-bottom: 1.25rem; /* 20px */
+  font-size: 1.5rem; /* 24px */
+  font-weight: bold;
+}
+
+/* Tarjeta que muestra la vista previa del producto */
+.tarjeta {
+  background: white;
+  color: #333;
+  border-radius: 0.625rem; /* 10px */
+  padding: 1.25rem; /* 20px */
+  width: 18.75rem; /* 300px */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); /* 4px 8px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Imagen dentro de la tarjeta */
+.tarjeta img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.3125rem; /* 5px */
+  margin-bottom: 0.9375rem; /* 15px */
+}
+
+/* Nombre del producto */
+.tarjeta .nombre {
+  font-size: 1.2rem; /* 19.2px */
+  font-weight: bold;
+  margin-bottom: 0.625rem; /* 10px */
+}
+
+/* Precio del producto */
+.tarjeta .precio {
+  font-size: 1.1rem; /* 17.6px */
+  color: #27ae60;
+}
+
+/* Contenedor para el input precio + símbolo € */
+.campo-precio {
+  display: flex; /* poner símbolo y input en línea */
+  align-items: center; /* centrar verticalmente */
+  background: white; /* fondo blanco para input + símbolo */
+  border-radius: 0.3125rem; /* 5px */
+  padding: 0 0.5rem; /* 0 8px */
+}
+
+/* Estilo para el símbolo € */
+.simbolo-euro {
+  margin-right: 0.3125rem; /* 5px */
+  color: #555;
+  font-weight: bold;
+  user-select: none; /* que no se pueda seleccionar */
+  font-size: 1rem;
+}
+
+/* Estilo del input dentro del contenedor */
+.campo-precio input {
+  border: none;
+  flex: 1; /* que tome el espacio restante */
+  padding: 0.5rem; /* 8px */
+  border-radius: 0.3125rem; /* 5px */
+  outline: none;
+  font-size: 1rem;
+}
+
+.boton-final {
+  margin-top: 1rem; /* 16px */
+  padding: 0.625rem 1.25rem; /* 10px 20px */
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  border-radius: 0.3125rem; /* 5px */
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.imagen-contenedor {
+  position: relative;
+  display: inline-block;
+}
+
+.boton-cruz {
+  position: absolute;
+  top: 0.3125rem; /* 5px */
+  right: 0.3125rem; /* 5px */
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
+  border-radius: 50%;
+  font-size: 1rem; /* 16px */
+  width: 1.75rem; /* 28px */
+  height: 1.75rem; /* 28px */
+  cursor: pointer;
+  display: none;
+  padding: 0;
+  line-height: 1;
+}
+
+.boton-cruz:hover {
+  background-color: #ffffff;
+}
+
+/* Responsividad básica para pantallas pequeñas */
+@media (max-width: 48rem) { /* 768px */
+  .contenedor-section {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .izquierda,
+  .derecha {
+    width: 100%;
+    height: auto;
+    padding: 1.25rem 0;
+  }
+
+  form,
+  .tarjeta {
+    width: 90%;
+    max-width: 25rem; /* 400px */
+  }
+
+  .titulo-seccion {
+    position: static;
+    margin-bottom: 1.25rem; /* 20px */
+  }
 }

@@ -25,7 +25,8 @@
         <!-- MENÚ LATERAL -->
         <nav id="sideNav">
             <ul>
-                <li><a href="../index.html"><img src="../assest/icon/icono-tienda.webp" alt="logo de la tienda"></a></li>
+                <li><a href="../index.html"><img src="../assest/icon/icono-tienda.webp" alt="logo de la tienda"></a>
+                </li>
                 <li><a href="nosotros.html" class="enlace">Nosotros</a></li>
                 <li><a href="tienda.html" class="enlace">Tienda</a></li>
                 <li><a href="contacto.html" class="enlace">Contacto</a></li>
@@ -38,85 +39,85 @@
         </div>
     </header>
 
-        <!------------CONTENIDO PRINCIPAL-------->
-        <main>
-            <h2>Nuestros productos</h2>
-            <!-- Producto 1 -->
-            <section class="galeria-products">
+    <!------------CONTENIDO PRINCIPAL-------->
+    <main>
+        <h2>Nuestros productos</h2>
+        <!-- Producto 1 -->
+        <section class="galeria-products">
+<!-- 
+            <article>
+                <img src="../assest/image/tienda/camisa_blanca.webp" alt="Producto 1 camisa blanca">
+                <h3>Camisa Blanca</h3>
+                <p>Precio: 25.00€</p>
+                <button>Comprar</button>
+            </article> -->
+            <!-- <article>
+                <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
+                <h3>Vestido Rojo</h3>
+                <p>Precio: 50.00€</p>
+                <button>Comprar</button>
+            </article>--> 
+        </section>
+    </main>
 
-                <article>
-                    <img src="../assest/image/tienda/camisa_blanca.webp" alt="Producto 1 camisa blanca">
-                    <h3>Camisa Blanca</h3>
-                    <p>Precio: 25.00€</p>
-                    <button>Comprar</button>
-                </article>
+    <!------------CONTENIDO ADICIONAL-------->
+    <aside>
+        <button id="anadir-productos">Añadir</button>
+        <button id="modo-eliminar">Eliminar</button>
+    </aside>
 
-                <!-- Producto 2 -->
-                <article>
-                    <img src="../assest/image/tienda/pantalon_negro.webp" alt="Producto 2 pantalon negro">
-                    <h3>Pantalón Negro</h3>
-                    <p>Precio: 40.00€</p>
-                    <button>Comprar</button>
-                </article>
 
-                <!-- Producto 3 -->
-                <article>
-                    <img src="../assest/image/tienda/chaqueta_jean.webp" alt="Producto 3 chaqueta jean">
-                    <h3>Chaqueta de Jean</h3>
-                    <p>Precio: 60.00€</p>
-                    <button>Comprar</button>
-                </article>
+    <section class="contenedor-section oculto" id="formulario-productos">
+        <!-- 
+        Usamos dos clases aquí:
+            - "contenedor-section" aplica los estilos de diseño (display: flex, altura, etc.).
+            - "oculto" se encarga de ocultar el section (display: none) cuando sea necesario.
+        Así separamos la lógica de diseño (estructura) de la lógica de visibilidad (mostrar/ocultar).
+        -->
+        <!-- Título de la sección -->
+        <h1 id="titulo-seccion" class="titulo-seccion">Añadir Nuevos Productos</h1>
 
-                <!-- Producto 4 -->
-                <article>
-                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
-                    <h3>Vestido Rojo</h3>
-                    <p>Precio: 50.00€</p>
-                    <button>Comprar</button>
-                </article>
-                <article>
-                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
-                    <h3>Vestido Rojo</h3>
-                    <p>Precio: 50.00€</p>
-                    <button>Comprar</button>
-                </article>
-                <article>
-                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
-                    <h3>Vestido Rojo</h3>
-                    <p>Precio: 50.00€</p>
-                    <button>Comprar</button>
-                </article>
-                <article>
-                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
-                    <h3>Vestido Rojo</h3>
-                    <p>Precio: 50.00€</p>
-                    <button>Comprar</button>
-                </article>
-                <article>
-                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
-                    <h3>Vestido Rojo</h3>
-                    <p>Precio: 50.00€</p>
-                    <button>Comprar</button>
-                </article>
-                <article>
-                    <img src="../assest/image/tienda/vestido_rojo.webp" alt="Producto 4 vestido rojo">
-                    <h3>Vestido Rojo</h3>
-                    <p>Precio: 50.00€</p>
-                    <button>Comprar</button>
-                </article>
-            </section>
-        </main>
+        <!-- Lado izquierdo: formulario para añadir producto -->
+        <div class="izquierda" role="form" aria-label="Formulario para añadir productos">
+            <form id="formulario-producto">
+                <label for="archivo">Imagen del producto:</label>
+                <input type="file" id="archivo" name="archivo" accept="image/*" required />
 
-        <!------------CONTENIDO ADICIONAL-------->
-        <aside>
-            <button>Añadir</button>
-            <button>Eliminar</button>
-        </aside>
+                <label for="nombre">Nombre del producto:</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre del producto..." required />
 
-        <!------------PIE DE PÁGINA-------->
-        <footer>
-            <p>2025 &copy; Aitor Perez</p>
-        </footer>
-    </body>
+                <label for="precio">Precio del producto:</label>
+                <!-- Contenedor con símbolo € y campo de precio -->
+                <div class="campo-precio">
+                    <input type="number" id="precio" name="precio" placeholder="0" required />
+                    <span class="simbolo-euro">€</span>
+                </div>
 
+                <button type="submit">Añadir a la tarjeta</button>
+                <button id="cerrar-formulario" type="button">❌ Cerrar formulario</button>
+            </form>
+        </div>
+
+        <!-- Lado derecho: vista previa del producto -->
+        <div class="derecha" aria-live="polite">
+            <h3>Visualización en la tienda</h3>
+            <div class="tarjeta" tabindex="0">
+                <div class="imagen-contenedor">
+                    <img id="vista-imagen" alt="Vista previa"/>
+                    <button id="borrar-imagen" class="boton-cruz" type="button">❌</button>
+                </div>
+                <div class="nombre" id="vista-nombre">Nombre del producto</div>
+                <div class="precio" id="vista-precio">0€</div>
+            </div>
+            <button type="button" class="boton-final">Añadir a la tienda</button>
+        </div>
+    </section>
+    <!------------PIE DE PÁGINA-------->
+    <footer>
+        <p>2025 &copy; Aitor Perez</p>
+    </footer>
+
+   
+</body>
+ <script src="../js/tienda.js" defer></script>
 </html>
