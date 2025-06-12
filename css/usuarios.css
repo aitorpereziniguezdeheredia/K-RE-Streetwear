@@ -1,0 +1,207 @@
+html, body {
+  background: linear-gradient(to bottom, #111 25%, #e91e63 75%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #f4f4f4;
+  font-size: 1rem;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #222;
+  color: #f4f4f4;
+}
+
+#busqueda {
+  padding: 10px 14px;
+  width: 320px;
+  font-size: 15px;
+  margin-bottom: 25px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+#busqueda:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(255, 255, 255, 0);
+  overflow: hidden;
+}
+
+thead {
+  background-color: #007bff00;
+  border-top: 1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+th, td {
+  padding: 14px 18px;
+  text-align: left;
+  color: #ffffff;
+}
+
+tbody tr:not(:last-child) {
+  border-bottom: 1px solid #ffffff;
+}
+
+tbody tr:hover {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+td[data-label="Acciones"] {
+  display: flex;
+  gap: 4px;
+}
+
+button {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button.editar {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+button.eliminar {
+  background-color: #dc3545;
+  color: white;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* ✅ Estilos de paginación */
+#paginacion {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#paginacion button {
+  background-color: #000000;
+  color: white;
+  border: none;
+  margin: 0 5px;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+#paginacion button[disabled] {
+  background-color: #6c757d;
+  cursor: default;
+}
+
+#paginacion button:hover:not([disabled]) {
+  background-color: #0056b3;
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    width: 100%;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tbody tr {
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: white;
+  }
+
+  tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    color: #000000;
+  }
+
+  tbody td::before {
+    content: attr(data-label);
+    font-weight: 500;
+    color: #007bff;
+  }
+
+  tbody td:last-child {
+    border-bottom: none;
+    justify-content: flex-start;
+    gap: 4px;
+  }
+}
+
+/* ✅ Ancho personalizado por columna */
+th.col-id,
+td[data-label="ID"] {
+  width: 60px;
+  max-width: 60px;
+}
+
+th.col-nombre,
+td[data-label="Nombre"] {
+  width: 160px;
+  max-width: 160px;
+}
+
+th.col-email,
+td[data-label="Email"] {
+  width: 250px;
+  max-width: 250px;
+}
+
+th.col-rol,
+td[data-label="Rol"] {
+  width: 120px;
+  max-width: 120px;
+}
+
+th.col-estado,
+td[data-label="Estado"] {
+  width: 120px;
+  max-width: 120px;
+}
+
+th.col-acciones,
+td[data-label="Acciones"] {
+  width: 120px;
+  max-width: 120px;
+}

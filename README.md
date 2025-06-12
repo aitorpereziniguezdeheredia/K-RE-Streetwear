@@ -5,12 +5,13 @@ Este proyecto está en desarrollo y próximamente se convertirá en una web dedi
 
 ## 🚧 Estado del proyecto
 
-Actualmente, este repositorio se encuentra en construcción. Pronto encontrarás aquí más información, nuevas funcionalidades y mejoras.
+Actualmente, este repositorio se encuentra en construcción. Ya se ha comenzado con la implementación de funcionalidades en **JavaScript**. Próximamente encontrarás más características interactivas, así como mejoras visuales y estructurales.
 
 ## 🛠️ Tecnologías utilizadas
 
 - **HTML**
 - **CSS**
+- **JavaScript** ✅ *En implementación*
 
 ## 📌 Nota
 
