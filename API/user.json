@@ -1,0 +1,382 @@
+[
+  {
+    "id": 1,
+    "name": "Ana Pérez",
+    "email": "ana.perez@mail.com",
+    "password": "hashed_password_1",
+    "createdAt": "2025-06-16T10:00:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 28,
+      "phone": "+34123456701",
+      "address": {
+        "street": "Calle Falsa 1",
+        "city": "Madrid",
+        "postalCode": "28001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 2,
+    "name": "Luis Gómez",
+    "email": "luis.gomez@mail.com",
+    "password": "hashed_password_2",
+    "createdAt": "2025-06-15T12:30:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 34,
+      "phone": "+34123456702",
+      "address": {
+        "street": "Avenida Siempre Viva 2",
+        "city": "Barcelona",
+        "postalCode": "08001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 3,
+    "name": "María López",
+    "email": "maria.lopez@mail.com",
+    "password": "hashed_password_3",
+    "createdAt": "2025-06-14T09:45:00Z",
+    "isActive": true,
+    "role": "admin",
+    "profile": {
+      "age": 29,
+      "phone": "+34123456703",
+      "address": {
+        "street": "Plaza Mayor 3",
+        "city": "Valencia",
+        "postalCode": "46001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 4,
+    "name": "Carlos Ruiz",
+    "email": "carlos.ruiz@mail.com",
+    "password": "hashed_password_4",
+    "createdAt": "2025-06-13T08:20:00Z",
+    "isActive": false,
+    "role": "cliente",
+    "profile": {
+      "age": 41,
+      "phone": "+34123456704",
+      "address": {
+        "street": "Calle Luna 4",
+        "city": "Sevilla",
+        "postalCode": "41001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 5,
+    "name": "Sofía Martínez",
+    "email": "sofia.martinez@mail.com",
+    "password": "hashed_password_5",
+    "createdAt": "2025-06-12T11:10:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 25,
+      "phone": "+34123456705",
+      "address": {
+        "street": "Calle Sol 5",
+        "city": "Bilbao",
+        "postalCode": "48001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 6,
+    "name": "Javier Torres",
+    "email": "javier.torres@mail.com",
+    "password": "hashed_password_6",
+    "createdAt": "2025-06-11T10:50:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 38,
+      "phone": "+34123456706",
+      "address": {
+        "street": "Avenida Central 6",
+        "city": "Zaragoza",
+        "postalCode": "50001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 7,
+    "name": "Laura Fernández",
+    "email": "laura.fernandez@mail.com",
+    "password": "hashed_password_7",
+    "createdAt": "2025-06-10T15:00:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 30,
+      "phone": "+34123456707",
+      "address": {
+        "street": "Calle Nueva 7",
+        "city": "Granada",
+        "postalCode": "18001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 8,
+    "name": "Pedro Sánchez",
+    "email": "pedro.sanchez@mail.com",
+    "password": "hashed_password_8",
+    "createdAt": "2025-06-09T14:40:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 27,
+      "phone": "+34123456708",
+      "address": {
+        "street": "Calle Verde 8",
+        "city": "Málaga",
+        "postalCode": "29001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 9,
+    "name": "Marta Ruiz",
+    "email": "marta.ruiz@mail.com",
+    "password": "hashed_password_9",
+    "createdAt": "2025-06-08T13:30:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 32,
+      "phone": "+34123456709",
+      "address": {
+        "street": "Calle Blanca 9",
+        "city": "Alicante",
+        "postalCode": "03001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 10,
+    "name": "Alberto Moreno",
+    "email": "alberto.moreno@mail.com",
+    "password": "hashed_password_10",
+    "createdAt": "2025-06-07T09:20:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 35,
+      "phone": "+34123456710",
+      "address": {
+        "street": "Avenida Libertad 10",
+        "city": "Santander",
+        "postalCode": "39001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 11,
+    "name": "Isabel Torres",
+    "email": "isabel.torres@mail.com",
+    "password": "hashed_password_11",
+    "createdAt": "2025-06-06T16:45:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 29,
+      "phone": "+34123456711",
+      "address": {
+        "street": "Calle Rosa 11",
+        "city": "Valladolid",
+        "postalCode": "47001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 12,
+    "name": "Jorge Ramírez",
+    "email": "jorge.ramirez@mail.com",
+    "password": "hashed_password_12",
+    "createdAt": "2025-06-05T11:30:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 40,
+      "phone": "+34123456712",
+      "address": {
+        "street": "Calle Mar 12",
+        "city": "Salamanca",
+        "postalCode": "37001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 13,
+    "name": "Natalia Vega",
+    "email": "natalia.vega@mail.com",
+    "password": "hashed_password_13",
+    "createdAt": "2025-06-04T14:20:00Z",
+    "isActive": false,
+    "role": "cliente",
+    "profile": {
+      "age": 26,
+      "phone": "+34123456713",
+      "address": {
+        "street": "Calle Naranja 13",
+        "city": "Toledo",
+        "postalCode": "45001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 14,
+    "name": "Fernando Gil",
+    "email": "fernando.gil@mail.com",
+    "password": "hashed_password_14",
+    "createdAt": "2025-06-03T10:10:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 33,
+      "phone": "+34123456714",
+      "address": {
+        "street": "Plaza Central 14",
+        "city": "Murcia",
+        "postalCode": "30001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 15,
+    "name": "Clara Ortiz",
+    "email": "clara.ortiz@mail.com",
+    "password": "hashed_password_15",
+    "createdAt": "2025-06-02T15:55:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 24,
+      "phone": "+34123456715",
+      "address": {
+        "street": "Calle Larga 15",
+        "city": "Pamplona",
+        "postalCode": "31001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 16,
+    "name": "Andrés Molina",
+    "email": "andres.molina@mail.com",
+    "password": "hashed_password_16",
+    "createdAt": "2025-06-01T12:35:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 37,
+      "phone": "+34123456716",
+      "address": {
+        "street": "Avenida Norte 16",
+        "city": "Vigo",
+        "postalCode": "36001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 17,
+    "name": "Paula Castro",
+    "email": "paula.castro@mail.com",
+    "password": "hashed_password_17",
+    "createdAt": "2025-05-31T09:15:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 31,
+      "phone": "+34123456717",
+      "address": {
+        "street": "Calle Flor 17",
+        "city": "A Coruña",
+        "postalCode": "15001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 18,
+    "name": "Miguel Herrera",
+    "email": "miguel.herrera@mail.com",
+    "password": "hashed_password_18",
+    "createdAt": "2025-05-30T13:50:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 39,
+      "phone": "+34123456718",
+      "address": {
+        "street": "Calle Río 18",
+        "city": "Castellón",
+        "postalCode": "12001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 19,
+    "name": "Elena Ruiz",
+    "email": "elena.ruiz@mail.com",
+    "password": "hashed_password_19",
+    "createdAt": "2025-05-29T14:25:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 27,
+      "phone": "+34123456719",
+      "address": {
+        "street": "Calle Cielo 19",
+        "city": "Almería",
+        "postalCode": "04001",
+        "country": "España"
+      }
+    }
+  },
+  {
+    "id": 20,
+    "name": "Raúl Fernández",
+    "email": "raul.fernandez@mail.com",
+    "password": "hashed_password_20",
+    "createdAt": "2025-05-28T11:05:00Z",
+    "isActive": true,
+    "role": "cliente",
+    "profile": {
+      "age": 36,
+      "phone": "+34123456720",
+      "address": {
+        "street": "Avenida Oeste 20",
+        "city": "Oviedo",
+        "postalCode": "33001",
+        "country": "España"
+      }
+    }
+  }
+]
