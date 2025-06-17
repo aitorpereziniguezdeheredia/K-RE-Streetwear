@@ -1,116 +1,25 @@
-const usuarios = [
-  {
-    id: 1,
-    nombre: "Juan Pérez",
-    email: "juan@example.com",
-    rol: "admin",
-    estado: "activo",
-  },
-  {
-    id: 2,
-    nombre: "María Gómez",
-    email: "maria@example.com",
-    rol: "usuario",
-    estado: "inactivo",
-  },
-  {
-    id: 3,
-    nombre: "Pedro Martínez",
-    email: "pedro@example.com",
-    rol: "editor",
-    estado: "activo",
-  },
-  {
-    id: 4,
-    nombre: "Ana Torres",
-    email: "ana.torres@example.com",
-    rol: "moderador",
-    estado: "activo",
-  },
-  {
-    id: 5,
-    nombre: "Luis Mendoza",
-    email: "luis.m@example.com",
-    rol: "usuario",
-    estado: "activo",
-  },
-  {
-    id: 6,
-    nombre: "Elena Castro",
-    email: "elena.cast@example.com",
-    rol: "admin",
-    estado: "inactivo",
-  },
-  {
-    id: 7,
-    nombre: "Carlos Ruiz",
-    email: "cruiz@example.com",
-    rol: "editor",
-    estado: "activo",
-  },
-  {
-    id: 8,
-    nombre: "Lucía Romero",
-    email: "lucia.r@example.com",
-    rol: "usuario",
-    estado: "activo",
-  },
-  {
-    id: 9,
-    nombre: "Fernando Salas",
-    email: "fsalas@example.com",
-    rol: "usuario",
-    estado: "activo",
-  },
-  {
-    id: 10,
-    nombre: "Verónica Díaz",
-    email: "verodiaz@example.com",
-    rol: "editor",
-    estado: "inactivo",
-  },
-  {
-    id: 11,
-    nombre: "Sofía López",
-    email: "sofia.l@example.com",
-    rol: "usuario",
-    estado: "activo",
-  },
-  {
-    id: 12,
-    nombre: "Gabriel Reyes",
-    email: "gabrielr@example.com",
-    rol: "moderador",
-    estado: "activo",
-  },
-  {
-    id: 13,
-    nombre: "Isabel Mora",
-    email: "isam@example.com",
-    rol: "usuario",
-    estado: "activo",
-  },
-  {
-    id: 14,
-    nombre: "Ricardo Vega",
-    email: "ricardov@example.com",
-    rol: "admin",
-    estado: "inactivo",
-  },
-  {
-    id: 15,
-    nombre: "Claudia Soto",
-    email: "claudia.s@example.com",
-    rol: "editor",
-    estado: "activo",
-  },
-];
-
 const tbody = document.querySelector("#tabla-usuarios tbody");
 const inputBusqueda = document.getElementById("busqueda");
+const modal = document.getElementById("modal");
+const modalForm = document.getElementById("modalForm");
+const modalCloseBtn = document.getElementById("modalClose");
+
+// Nueva sección para mostrar detalles completos en modo "ver"
+const modalDetalles = document.getElementById("modalDetalles");
 
 const usuariosPorPagina = 10;
 let paginaActual = 1;
+let usuarios = [];
+
+async function cargarUsuarios() {
+  try {
+    const res = await fetch("../API/user.json");
+    usuarios = await res.json();
+    renderTabla(usuarios);
+  } catch (e) {
+    console.error("Error cargando usuarios:", e);
+  }
+}
 
 function renderTabla(lista) {
   tbody.innerHTML = "";
@@ -118,19 +27,22 @@ function renderTabla(lista) {
   const fin = inicio + usuariosPorPagina;
   const pagina = lista.slice(inicio, fin);
 
-  pagina.forEach((usuario) => {
+  pagina.forEach(usuario => {
     const fila = document.createElement("tr");
     fila.innerHTML = `
-        <td data-label="ID">${usuario.id}</td>
-        <td data-label="Nombre">${usuario.nombre}</td>
-        <td data-label="Email">${usuario.email}</td>
-        <td data-label="Rol">${usuario.rol}</td>
-        <td data-label="Estado">${usuario.estado}</td>
-        <td data-label="Acciones">
-          <button onclick="editarUsuario(${usuario.id})">✏️</button>
-          <button onclick="eliminarUsuario(${usuario.id})">🗑️</button>
-        </td>
-      `;
+      <td data-label="ID">${usuario.id}</td>
+      <td data-label="Nombre">${usuario.name}</td>
+      <td data-label="Email">${usuario.email}</td>
+      <td data-label="Rol">${usuario.role}</td>
+      <td data-label="Estado">${usuario.isActive ? "Activo" : "Inactivo"}</td>
+      <td data-label="Teléfono">${usuario.profile?.phone || ""}</td>
+      <td data-label="Ciudad">${usuario.profile?.address?.city || ""}</td>
+      <td data-label="Acciones">
+        <button onclick="abrirModal(${usuario.id}, 'ver')" title="Ver detalles">👁️</button>
+        <button onclick="abrirModal(${usuario.id}, 'editar')" title="Editar">✏️</button>
+        <button onclick="eliminarUsuario(${usuario.id})" title="Eliminar">🗑️</button>
+      </td>
+    `;
     tbody.appendChild(fila);
   });
 
@@ -141,10 +53,9 @@ function renderPaginacion(lista) {
   const paginacion = document.getElementById("paginacion");
   paginacion.innerHTML = "";
 
-  paginacion.innerHTML = "";
   const totalPaginas = Math.ceil(lista.length / usuariosPorPagina);
 
-  if (paginaActual > 1) {na
+  if (paginaActual > 1) {
     const btnAnterior = document.createElement("button");
     btnAnterior.textContent = "◀ Anterior";
     btnAnterior.onclick = () => {
@@ -177,11 +88,21 @@ function renderPaginacion(lista) {
   }
 }
 
+function usuariosFiltrados() {
+  const filtro = inputBusqueda.value.toLowerCase();
+  return usuarios.filter(usuario =>
+    usuario.name.toLowerCase().includes(filtro) ||
+    usuario.email.toLowerCase().includes(filtro) ||
+    usuario.role.toLowerCase().includes(filtro) ||
+    (usuario.profile?.phone || "").toLowerCase().includes(filtro) ||
+    (usuario.profile?.address?.city || "").toLowerCase().includes(filtro)
+  );
+}
+
 function eliminarUsuario(id) {
-  const index = usuarios.findIndex((u) => u.id === id);
+  const index = usuarios.findIndex(u => u.id === id);
   if (index !== -1) {
     usuarios.splice(index, 1);
-    // Si eliminamos el último elemento de una página, retrocedemos una página si queda vacía
     const listaFiltrada = usuariosFiltrados();
     const totalPaginas = Math.ceil(listaFiltrada.length / usuariosPorPagina);
     if (paginaActual > totalPaginas) paginaActual = totalPaginas;
@@ -189,25 +110,97 @@ function eliminarUsuario(id) {
   }
 }
 
-function editarUsuario(id) {
-  const usuario = usuarios.find((u) => u.id === id);
-  alert(
-    `Simulación de edición:\nNombre: ${usuario.nombre}\nEmail: ${usuario.email}`
-  );
-}
+// Función para abrir el modal en modo 'ver' o 'editar'
+window.abrirModal = function(id, modo = 'ver') {
+  const usuario = usuarios.find(u => u.id === id);
+  if (!usuario) return;
 
-function usuariosFiltrados() {
-  const filtro = inputBusqueda.value.toLowerCase();
-  return usuarios.filter(
-    (usuario) =>
-      usuario.nombre.toLowerCase().includes(filtro) ||
-      usuario.email.toLowerCase().includes(filtro)
-  );
-}
+  modal.style.display = "block";
+
+  if (modo === 'editar') {
+    // Mostrar formulario y ocultar detalles
+    modalForm.style.display = 'block';
+    modalDetalles.style.display = 'none';
+
+    // Rellenar formulario
+    modalForm.id.value = usuario.id;
+    modalForm.name.value = usuario.name;
+    modalForm.email.value = usuario.email;
+    modalForm.role.value = usuario.role;
+    modalForm.isActive.value = usuario.isActive.toString();
+    modalForm.phone.value = usuario.profile?.phone || "";
+    modalForm.city.value = usuario.profile?.address?.city || "";
+
+    // Habilitar inputs para edición
+    Array.from(modalForm.elements).forEach(el => {
+      if (el.tagName === "BUTTON") return;
+      el.disabled = false;
+    });
+
+    // Mostrar botón Guardar y cambiar texto botón cerrar
+    modalForm.querySelector('button[type="submit"]').style.display = 'inline-block';
+    modalCloseBtn.textContent = 'Cancelar';
+
+  } else {
+    // Modo "ver" — mostrar detalles completos y ocultar formulario
+    modalForm.style.display = 'none';
+    modalDetalles.style.display = 'block';
+
+    // Construir el contenido HTML con todos los datos del usuario
+    modalDetalles.innerHTML = `
+      <h3>Detalles de Usuario</h3>
+      <p><strong>ID:</strong> ${usuario.id}</p>
+      <p><strong>Nombre:</strong> ${usuario.name}</p>
+      <p><strong>Email:</strong> ${usuario.email}</p>
+      <p><strong>Rol:</strong> ${usuario.role}</p>
+      <p><strong>Estado:</strong> ${usuario.isActive ? "Activo" : "Inactivo"}</p>
+      <p><strong>Teléfono:</strong> ${usuario.profile?.phone || "N/A"}</p>
+      <p><strong>Ciudad:</strong> ${usuario.profile?.address?.city || "N/A"}</p>
+      <p><strong>Dirección completa:</strong> ${usuario.profile?.address?.street || "N/A"}, ${usuario.profile?.address?.zip || "N/A"}</p>
+      <p><strong>Fecha de registro:</strong> ${usuario.registeredDate || "N/A"}</p>
+      <p><strong>Notas:</strong> ${usuario.notes || "N/A"}</p>
+    `;
+
+    // Cambiar texto botón cerrar
+    modalCloseBtn.textContent = 'Cerrar';
+  }
+};
+
+// Cerrar modal y resetear formulario
+modalCloseBtn.onclick = () => {
+  modal.style.display = "none";
+  modalForm.reset();
+  modalDetalles.innerHTML = "";
+};
+
+// Guardar cambios en modo editar
+modalForm.onsubmit = e => {
+  e.preventDefault();
+
+  const id = parseInt(modalForm.id.value, 10);
+  const usuario = usuarios.find(u => u.id === id);
+  if (!usuario) return;
+
+  usuario.name = modalForm.name.value;
+  usuario.email = modalForm.email.value;
+  usuario.role = modalForm.role.value;
+  usuario.isActive = modalForm.isActive.value === "true";
+
+  if (!usuario.profile) usuario.profile = {};
+  usuario.profile.phone = modalForm.phone.value;
+
+  if (!usuario.profile.address) usuario.profile.address = {};
+  usuario.profile.address.city = modalForm.city.value;
+
+  modal.style.display = "none";
+
+  renderTabla(usuariosFiltrados());
+};
 
 inputBusqueda.addEventListener("input", () => {
-  paginaActual = 1; // Reiniciar a la primera página al filtrar
+  paginaActual = 1;
   renderTabla(usuariosFiltrados());
 });
 
-renderTabla(usuarios);
+// Carga inicial
+cargarUsuarios();

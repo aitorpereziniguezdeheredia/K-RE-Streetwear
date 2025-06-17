@@ -1,3 +1,4 @@
+/* --- Estilos base que ya tienes --- */
 html, body {
   background: linear-gradient(to bottom, #111 25%, #e91e63 75%);
   background-attachment: fixed;
@@ -68,6 +69,14 @@ tbody tr:hover {
   cursor: pointer;
 }
 
+tr:hover td {
+  color: #000000;
+}
+
+tr:hover button {
+  background-color: #e91e63;
+}
+
 td[data-label="Acciones"] {
   display: flex;
   gap: 4px;
@@ -96,7 +105,7 @@ button:hover {
   opacity: 0.9;
 }
 
-/* ✅ Estilos de paginación */
+/* Paginación */
 #paginacion {
   margin-top: 15px;
   margin-bottom: 15px;
@@ -124,7 +133,120 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* ✅ Responsive */
+/* --- Modal --- */
+#modal {
+  display: none; /* Oculto por defecto */
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex; /* Flex para centrar contenido */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px; /* Padding para móvil */
+  overflow-y: auto;
+}
+
+#modal .modal-content {
+  background: #fff;
+  color: #333;
+  padding: 25px 30px;
+  border-radius: 12px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  position: relative;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Formulario dentro del modal */
+#modalForm {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#modalForm .form-group label {
+  font-weight: 600;
+  color: #444;
+  display: block;
+  margin-bottom: 6px;
+}
+
+#modalForm input[type="text"],
+#modalForm input[type="email"],
+#modalForm select {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border-color 0.3s ease;
+}
+
+#modalForm input[type="text"]:focus,
+#modalForm input[type="email"]:focus,
+#modalForm select:focus {
+  border-color: #e91e63;
+  outline: none;
+  box-shadow: 0 0 6px rgba(233, 30, 99, 0.5);
+}
+
+/* Botones modal */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.modal-actions button[type="submit"] {
+  background-color: #e91e63;
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-actions button[type="submit"]:hover {
+  background-color: #c2185b;
+}
+
+.modal-actions button#modalClose {
+  background-color: #999;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-actions button#modalClose:hover {
+  background-color: #666;
+}
+
+/* Estilos para el div de detalles (modo ver) */
+#modalDetalles {
+  color: #222;
+  font-size: 1rem;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  user-select: text;
+}
+
+#modalDetalles p {
+  margin-bottom: 10px;
+}
+
+#modalDetalles strong {
+  color: #e91e63;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   table,
   thead,
@@ -159,7 +281,6 @@ button:hover {
   tbody td::before {
     content: attr(data-label);
     font-weight: 500;
-    color: #007bff;
   }
 
   tbody td:last-child {
@@ -167,9 +288,14 @@ button:hover {
     justify-content: flex-start;
     gap: 4px;
   }
+
+  /* Modal padding para pantallas pequeñas */
+  #modal {
+    padding: 10px;
+  }
 }
 
-/* ✅ Ancho personalizado por columna */
+/* Ancho personalizado por columna */
 th.col-id,
 td[data-label="ID"] {
   width: 60px;
@@ -204,4 +330,19 @@ th.col-acciones,
 td[data-label="Acciones"] {
   width: 120px;
   max-width: 120px;
+}
+
+
+.modal-actions button#modalClose {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-actions button#modalClose:hover {
+  background-color: #666;
 }

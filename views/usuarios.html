@@ -6,16 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contacto - KÖRE Streetwear</title>
     <link rel="shortcut icon" href="../assest/icon/icono-tienda.webp" />
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/usuarios.css">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/usuarios.css" />
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
-<!--EL CONTENIDO DE LA PÁGINA-->
 
 <body>
     <!------------CABECERA Y NAVEGACIÓN-------->
     <header>
-
         <!-- INPUT OCULTO QUE CONTROLA EL MENÚ -->
         <input type="checkbox" id="menu-tienda" class="menu-tienda" />
 
@@ -25,7 +23,8 @@
         <!-- MENÚ LATERAL -->
         <nav id="sideNav">
             <ul>
-                <li><a href="../index.html"><img src="../assest/icon/icono-tienda.webp" alt="logo de la tienda"></a>
+                <li>
+                    <a href="../index.html"><img src="../assest/icon/icono-tienda.webp" alt="logo de la tienda" /></a>
                 </li>
                 <li><a href="nosotros.html" class="enlace">Nosotros</a></li>
                 <li><a href="tienda.html" class="enlace">Tienda</a></li>
@@ -44,34 +43,65 @@
     <main>
         <h2>Gestión de Usuarios</h2>
 
-        <input type="text" id="busqueda" placeholder="Buscar por nombre o email" />
+        <input id="busqueda" placeholder="Buscar usuarios..." />
 
         <table id="tabla-usuarios">
             <thead>
                 <tr>
-                    <th class="col-id">ID</th>
-                    <th class="col-nombre">Nombre</th>
-                    <th class="col-email">Email</th>
-                    <th class="col-rol">Rol</th>
-                    <th class="col-estado">Estado</th>
-                    <th class="col-acciones"></th>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Estado</th>
+                    <th>Teléfono</th>
+                    <th>Ciudad</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- Aquí se insertarán los usuarios -->
-            </tbody>
+            <tbody></tbody>
         </table>
         <div id="paginacion"></div>
+
+        <!-- Modal -->
+        <div id="modal" class="modal-overlay" style="display:none;">
+            <div class="modal-content">
+                <!-- Formulario para editar usuario -->
+                <form id="modalForm" style="display:none;">
+                    <input type="hidden" name="id" />
+                    <div class="form-group"><label>Nombre: <input name="name" type="text" /></label></div>
+                    <div class="form-group"><label>Email: <input name="email" type="email" /></label></div>
+                    <div class="form-group"><label>Rol: <input name="role" type="text" /></label></div>
+                    <div class="form-group">
+                        <label>Estado:
+                            <select name="isActive">
+                                <option value="true">Activo</option>
+                                <option value="false">Inactivo</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-group"><label>Teléfono: <input name="phone" type="text" /></label></div>
+                    <div class="form-group"><label>Ciudad: <input name="city" type="text" /></label></div>
+                    <div class="modal-actions">
+                        <button type="submit">Guardar</button>
+                        <button type="button" id="modalClose">Cerrar</button>
+                    </div>
+                </form>
+
+                <!-- Área para ver detalles completos del usuario -->
+                <div id="modalDetalles" style="display:none; font-size: 0.9rem; line-height: 1.4; padding: 1rem;">
+                    <button type="button" id="modalClose">Cerrar</button>
+                    <!-- Aquí se cargan los detalles en modo "ver" -->
+                </div>
+            </div>
+        </div>
     </main>
-
-    <!------------CONTENIDO ADICIONAL-------->
-
 
     <!------------PIE DE PÁGINA-------->
     <footer>
         <p>2025 &copy; Aitor Perez</p>
     </footer>
+
+    <script src="../js/main.js" defer></script>
 </body>
-<script src="../js/main.js" defer></script>
 
 </html>
