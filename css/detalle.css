@@ -1,0 +1,253 @@
+/* ========================================================= */
+/* ESTILOS ESPECÍFICOS DE LA PÁGINA DE DETALLE (detalle_producto.html) */
+/* ========================================================= */
+
+.back-button {
+    font-size: 36px;
+    color: #333;
+    text-decoration: none;
+    z-index: 100;
+    line-height: 1;
+    position: absolute;
+    top: 15px;
+    left: 20px;
+}
+
+.back-button:hover {
+    color: #007bff;
+}
+
+.detalle-producto-contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Espacio entre las columnas */
+    max-width: 1200px; /* Ancho máximo del contenedor principal en escritorio */
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* --- ESTILOS PREDETERMINADOS (PARA ESCRITORIOS GRANDES) --- */
+.detalle-galeria-imagenes {
+    flex: 0 0 450px; /* Ancho fijo de 450px para la columna de la imagen */
+    min-width: 300px; /* Permite que se reduzca hasta 300px si es necesario */
+    text-align: center;
+}
+
+.imagen-principal {
+    width: 100%; /* La imagen ocupa el 100% del ancho de su columna */
+    height: 450px; /* Alto fijo de la imagen en escritorio */
+    object-fit: contain; /* Ajusta la imagen dentro del contenedor sin recortarla */
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.miniaturas {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.miniatura-imagen {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.miniatura-imagen:hover {
+    border-color: #007bff;
+    transform: scale(1.05);
+}
+
+.detalle-info-producto {
+    width: 450px; /* Ancho fijo de 450px para la tarjeta de información */
+    height: 550px; /* Alto fijo de 550px para la tarjeta de información */
+    flex-grow: 0; /* No permite que la tarjeta crezca */
+    flex-shrink: 0; /* No permite que la tarjeta se encoja */
+    
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    /* No hay overflow-y: auto aquí para evitar scroll en la tarjeta principal */
+}
+
+.detalle-info-producto h2 {
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    color: #333;
+    /* En escritorio: el nombre se mantiene en una línea y se trunca */
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+}
+
+.detalle-descripcion {
+    font-size: 1.1em;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 20px;
+    max-height: 150px; /* Altura máxima para la descripción (con scroll interno si es más larga) */
+    overflow-y: auto; 
+}
+
+.detalle-precio {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.detalle-opciones {
+    margin-bottom: 30px;
+}
+
+.opcion-grupo {
+    margin-bottom: 15px;
+}
+
+.opcion-grupo label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.opcion-grupo select,
+.opcion-grupo .input-cantidad {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.input-cantidad {
+    max-width: 100px;
+    text-align: center;
+}
+
+.detalle-info-producto .boton-final {
+    background-color: #28a745;
+    color: white;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+}
+
+.detalle-info-producto .boton-final:hover {
+    background-color: #218838;
+}
+
+/* ========================================================= */
+/* RESPONSIVIDAD (Tamaños fijos en breakpoints específicos) */
+/* ========================================================= */
+
+/* --- PARA TABLETS Y PANTALLAS MEDIANAS (hasta 992px de ancho) --- */
+@media (max-width: 992px) {
+    .detalle-producto-contenedor {
+        gap: 20px; /* Reduce el espacio entre columnas */
+        max-width: 900px; /* Limita el ancho del contenedor principal */
+        padding: 0 15px;
+    }
+
+    .detalle-galeria-imagenes {
+        flex: 0 0 350px; /* Ancho fijo de la columna de imagen para tablets */
+        min-width: 280px;
+    }
+
+    .imagen-principal {
+        height: 380px; /* Altura fija de la imagen para tablets */
+    }
+
+    .detalle-info-producto {
+        width: 350px; /* Ancho fijo de la tarjeta de información para tablets */
+        height: 520px; /* AJUSTADO: Aumentado el alto para evitar scroll en tablet */
+    }
+
+    .detalle-info-producto h2 {
+        white-space: normal;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* Limita a 2 líneas */
+        -webkit-box-orient: vertical;
+        height: 2.5em; /* Asegura una altura consistente para 2 líneas */
+    }
+}
+
+
+/* --- PARA MÓVILES (hasta 768px de ancho) --- */
+@media (max-width: 768px) {
+    .back-button {
+        position: static;
+        margin-bottom: 10px;
+        text-align: center;
+        display: block;
+    }
+
+    .detalle-producto-contenedor {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 10px;
+        gap: 20px;
+    }
+    
+    .detalle-galeria-imagenes,
+    .detalle-info-producto {
+        width: 300px; /* Ancho fijo común para ambos elementos en móvil */
+        max-width: calc(100% - 20px);
+        flex: 0 0 auto;
+        padding: 15px;
+        flex-shrink: 0;
+        flex-grow: 0;
+    }
+
+    .imagen-principal {
+        height: 280px; /* Altura fija de la imagen para móvil */
+    }
+
+    .detalle-info-producto {
+        height: 450px; /* AJUSTADO: Aumentado el alto para evitar scroll en móvil */
+        /* Si, aun con esta altura, el contenido A VECES excede y el desbordamiento es inaceptable,
+           PUEDES volver a añadir: overflow-y: auto; aquí, pero intenta evitarlo. */
+    }
+
+    .detalle-info-producto h2 {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        height: auto;
+        -webkit-line-clamp: unset;
+    }
+
+    .detalle-descripcion {
+        height: auto; 
+        max-height: 100px;
+        overflow-y: auto;
+    }
+}
+
+/* --- PARA MÓVILES MUY PEQUEÑOS (hasta 480px de ancho) --- */
+@media (max-width: 480px) {
+    .detalle-producto-contenedor {
+        padding: 0 5px;
+    }
+    .detalle-galeria-imagenes,
+    .detalle-info-producto {
+        width: 280px; /* Ancho fijo para pantallas muy pequeñas */
+        max-width: calc(100% - 10px);
+    }
+    .miniatura-imagen {
+        width: 55px;
+        height: 55px;
+    }
+}

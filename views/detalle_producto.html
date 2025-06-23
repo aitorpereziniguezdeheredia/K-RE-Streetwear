@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="detalle-titulo-pagina">Detalle del Producto - KÖRE Streetwear</title>
+    <link rel="shortcut icon" href="../assest/icon/icono-tienda.webp" />
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/detalle.css">
+    <link rel="stylesheet" href="../css/tienda.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <a href="tienda.html" class="material-symbols-outlined back-button">arrow_back</a>
+        <h1>Detalle del Producto</h1>
+        <div class="carrito-contenedor">
+            <span class="material-symbols-outlined carrito-icon">shopping_cart</span>
+            <span id="contador-carrito" class="contador-carrito">0</span>
+        </div>
+    </header>
+
+    <main class="detalle-producto-contenedor">
+        <section class="detalle-galeria-imagenes">
+            <img id="detalle-imagen-principal" src="" alt="Imagen principal del producto" class="imagen-principal">
+            <div id="detalle-miniaturas" class="miniaturas">
+                </div>
+        </section>
+
+        <section class="detalle-info-producto">
+            <h2 id="detalle-nombre">Nombre del Producto</h2>
+            <p class="detalle-descripcion" id="detalle-descripcion">Descripción detallada del producto...</p>
+            <p class="detalle-precio">Precio: <span id="detalle-precio">0.00</span>€</p>
+
+            <div class="detalle-opciones">
+                <div class="opcion-grupo">
+                    <label for="detalle-talla">Talla:</label>
+                    <select id="detalle-talla">
+                        <option value="">Selecciona una talla</option>
+                    </select>
+                </div>
+
+                <div class="opcion-grupo">
+                    <label for="detalle-color">Color:</label>
+                    <select id="detalle-color">
+                        <option value="">Selecciona un color</option>
+                    </select>
+                </div>
+
+                <div class="opcion-grupo">
+                    <label for="detalle-cantidad">Cantidad:</label>
+                    <input type="number" id="detalle-cantidad" value="1" min="1" max="99" class="input-cantidad">
+                </div>
+            </div>
+
+            <button id="boton-anadir-carrito" class="boton-final">Añadir al Carrito</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>2025 &copy; Aitor Perez</p>
+    </footer>
+
+    <script type="module" src="../js/cartUtils.js"></script>
+    <script type="module" src="../js/detalles.js"></script>
+</html>

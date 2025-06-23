@@ -1,119 +1,146 @@
-const productos = [
-  {
-    nombre: "Camisa Blanca",
-    precio: 25.0,
-    imagen: "../assest/image/tienda/camisa_blanca.webp",
-    alt: "Camisa blanca de algodón"
-  },
-  {
-    nombre: "Pantalón Negro",
-    precio: 40.0,
-    imagen: "../assest/image/tienda/pantalon_negro.webp",
-    alt: "Pantalón negro estilo urbano"
-  },
-  {
-    nombre: "Chaqueta Jean",
-    precio: 60.0,
-    imagen: "../assest/image/tienda/chaqueta_jean.webp",
-    alt: "Chaqueta vaquera moderna"
-  }
-];
+// js/tienda.js
 
+// Importar funciones de utilidad del carrito
+// Se mantienen los imports aunque addToCart ya no se use directamente aquí,
+// por si se decidiera reintroducir una funcionalidad de "compra rápida" diferente,
+// o si otras partes del script lo requirieran.
+import { getCartItems, saveCartItems, addToCart } from './cartUtils.js';
+
+// Variables globales
+let productos = [];
 let modoEliminarActivo = false;
 
+// --- Función para renderizar la galería de productos ---
 function renderizarGaleria() {
   const galeria = document.querySelector(".galeria-products");
-  galeria.innerHTML = "";
+  if (!galeria) {
+    console.error("Elemento .galeria-products no encontrado. Asegúrate de que existe en tienda.html");
+    return;
+  }
+  galeria.innerHTML = ""; // Limpiar la galería antes de renderizar
 
-  productos.forEach((producto, index) => {
+  productos.forEach((producto) => {
     const article = document.createElement("article");
+    
+    const productId = producto.id;
+    const productName = producto.name || producto.nombre || 'Producto Desconocido';
+    const productPrice = (producto.price || producto.precio || 0).toFixed(2);
+    const productImageSrc = (producto.images && producto.images[0]) || producto.imagen || '';
+    const productAlt = producto.alt || productName;
+
     article.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.alt}">
-      <h3>${producto.nombre}</h3>
-      <p>Precio: ${producto.precio.toFixed(2)}€</p>
-      <button>${modoEliminarActivo ? "Eliminar" : "Comprar"}</button>
+      <img src="${productImageSrc}" alt="${productAlt}">
+      <h3>${productName}</h3>
+      <p>Precio: ${productPrice}€</p>
+      <button data-product-id="${productId}" class="accion-boton">
+        ${modoEliminarActivo ? "Eliminar" : "Comprar"}
+      </button>
     `;
 
-    const boton = article.querySelector("button");
+    const boton = article.querySelector(".accion-boton");
     if (modoEliminarActivo) {
-      boton.classList.add("eliminar-producto");
-      boton.onclick = () => {
-        productos.splice(index, 1);
+      boton.classList.add("eliminar-modo");
+      boton.addEventListener("click", () => {
+        productos = productos.filter(p => p.id !== productId);
         renderizarGaleria();
-        activarModoEliminar(); // Reaplica el modo eliminar tras render
-      };
+      });
+    } else {
+      boton.classList.add("comprar-modo"); 
+      boton.addEventListener("click", (event) => {
+        const idToViewDetails = event.target.dataset.productId;
+        // Redirige a la página de detalles cuando se hace clic en el botón "Comprar"
+        window.location.href = `detalle_producto.html?id=${idToViewDetails}`;
+      });
     }
-
     galeria.appendChild(article);
   });
 }
 
+// --- Funciones para el formulario de añadir productos ---
 function mostrarAñadirProductos() {
-  document.getElementById("formulario-productos").classList.toggle("oculto");
+  const formulario = document.getElementById("formulario-productos");
+  if (formulario) {
+    formulario.classList.remove("oculto");
+  }
 }
 
 function activarModoEliminar() {
   modoEliminarActivo = !modoEliminarActivo;
+  const botonModoEliminar = document.getElementById("modo-eliminar");
+  if (botonModoEliminar) {
+    botonModoEliminar.textContent = modoEliminarActivo ? "Desactivar Modo Eliminar" : "Activar Modo Eliminar";
+  }
   renderizarGaleria();
-
-  const botonEliminar = document.getElementById("modo-eliminar");
-  botonEliminar.textContent = modoEliminarActivo
-    ? "Salir del modo eliminar"
-    : "Eliminar";
 }
 
 function inicializarFormularioProducto() {
-  const formulario = document.getElementById("formulario-producto");
+  const formulario = document.getElementById("anadir-producto-form");
+  const nombreInput = document.getElementById("nombre-producto");
+  const precioInput = document.getElementById("precio");
+  const imagenInput = document.getElementById("imagen-producto");
   const imagenVista = document.getElementById("vista-imagen");
+  const vistaNombre = document.getElementById("vista-nombre");
+  const vistaPrecio = document.getElementById("vista-precio");
   const botonBorrar = document.getElementById("borrar-imagen");
-  const inputArchivo = document.getElementById("archivo");
 
-  formulario.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    const nombre = document.getElementById("nombre").value;
-    const precio = parseFloat(document.getElementById("precio").value).toFixed(2);
-    const archivo = inputArchivo.files[0];
-
-    document.getElementById("vista-nombre").textContent = nombre;
-    document.getElementById("vista-precio").textContent = `${precio} €`;
-
-    if (archivo) {
-      const lector = new FileReader();
-      lector.onload = function (e) {
+  imagenInput.addEventListener("change", function () {
+    const file = this.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
         imagenVista.src = e.target.result;
         botonBorrar.style.display = "block";
       };
-      lector.readAsDataURL(archivo);
+      reader.readAsDataURL(file);
+    } else {
+      imagenVista.src = "";
+      botonBorrar.style.display = "none";
     }
   });
 
-  botonBorrar.addEventListener("click", function () {
+  botonBorrar.addEventListener("click", () => {
     imagenVista.src = "";
+    imagenInput.value = "";
     botonBorrar.style.display = "none";
-    inputArchivo.value = "";
   });
 
-  const botonAgregar = document.querySelector(".boton-final");
-  botonAgregar.addEventListener("click", () => {
-    const nombre = document.getElementById("vista-nombre").textContent;
-    const precioTexto = document.getElementById("vista-precio").textContent;
-    const imagenSrc = document.getElementById("vista-imagen").src;
+  nombreInput.addEventListener("input", () => {
+    vistaNombre.textContent = nombreInput.value.trim() || "Nombre del producto";
+  });
+
+  precioInput.addEventListener("input", () => {
+    vistaPrecio.textContent = `${parseFloat(precioInput.value || 0).toFixed(2)}€`;
+  });
+
+  formulario.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nombre = nombreInput.value.trim();
+    const precioTexto = precioInput.value.trim();
+    const imagenSrc = imagenVista.src;
 
     if (!nombre || !precioTexto || !imagenSrc || imagenSrc === window.location.href) {
       alert("Por favor, rellena correctamente el formulario y añade una imagen.");
       return;
     }
 
-    const precio = parseFloat(precioTexto.replace("€", "").trim());
+    const precio = parseFloat(precioTexto);
 
-    productos.push({
-      nombre,
-      precio,
-      imagen: imagenSrc,
-      alt: `Imagen de ${nombre}`
-    });
+    const nuevoProducto = {
+      id: `manual-${Date.now()}`,
+      name: nombre,
+      price: precio,
+      images: [imagenSrc],
+      description: "Producto añadido manualmente.",
+      category: "otros",
+      sizes: ["Única"],
+      colors: ["varios"],
+      stock: 1,
+      createdAt: new Date().toISOString(),
+      isAvailable: true
+    };
 
+    productos.push(nuevoProducto);
     renderizarGaleria();
 
     formulario.reset();
@@ -124,24 +151,65 @@ function inicializarFormularioProducto() {
   });
 }
 
+// --- Carga de productos desde clothes.json ---
+async function loadProducts() {
+    try {
+        const response = await fetch('../API/clothes.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        productos = await response.json();
+        renderizarGaleria();
+    } catch (error) {
+        console.error("Error al cargar los productos desde clothes.json:", error);
+    }
+}
+
+// --- Event Listeners que se activan cuando el DOM está completamente cargado ---
 document.addEventListener("DOMContentLoaded", () => {
-  renderizarGaleria();
+  loadProducts();
   inicializarFormularioProducto();
 
-  document.getElementById("anadir-productos").addEventListener("click", mostrarAñadirProductos);
-  document.getElementById("modo-eliminar").addEventListener("click", activarModoEliminar);
-  document.getElementById("cerrar-formulario").addEventListener("click", () => {
-    document.getElementById("formulario-productos").classList.add("oculto");
-  });
+  const anadirProductosBtn = document.getElementById("anadir-productos");
+  if (anadirProductosBtn) {
+    anadirProductosBtn.addEventListener("click", mostrarAñadirProductos);
+  } else {
+    console.warn("Botón 'anadir-productos' no encontrado.");
+  }
+
+  const modoEliminarBtn = document.getElementById("modo-eliminar");
+  if (modoEliminarBtn) {
+    modoEliminarBtn.addEventListener("click", activarModoEliminar);
+  } else {
+    console.warn("Botón 'modo-eliminar' no encontrado.");
+  }
+  
+  const cerrarFormularioBtn = document.getElementById("cerrar-formulario");
+  if (cerrarFormularioBtn) {
+    cerrarFormularioBtn.addEventListener("click", () => {
+        const formulario = document.getElementById("formulario-productos");
+        if (formulario) {
+            formulario.classList.add("oculto");
+        }
+    });
+  } else {
+    console.warn("Botón 'cerrar-formulario' no encontrado.");
+  }
 
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
-      document.getElementById("formulario-productos").classList.add("oculto");
-
+      const formulario = document.getElementById("formulario-productos");
+      if (formulario && !formulario.classList.contains("oculto")) {
+        formulario.classList.add("oculto");
+      }
+      
       if (modoEliminarActivo) {
         modoEliminarActivo = false;
+        const botonModoEliminar = document.getElementById("modo-eliminar");
+        if (botonModoEliminar) {
+            botonModoEliminar.textContent = "Activar Modo Eliminar";
+        }
         renderizarGaleria();
-        document.getElementById("modo-eliminar").textContent = "Eliminar";
       }
     }
   });
