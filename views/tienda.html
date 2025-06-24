@@ -81,12 +81,12 @@
 
         <!-- Lado izquierdo: formulario para añadir producto -->
         <div class="izquierda" role="form" aria-label="Formulario para añadir productos">
-            <form id="formulario-producto">
+            <form id="anadir-producto-form">
                 <label for="archivo">Imagen del producto:</label>
-                <input type="file" id="archivo" name="archivo" accept="image/*" required />
+                <input type="file" id="imagen-producto" name="archivo" accept="image/*" required />
 
                 <label for="nombre">Nombre del producto:</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Nombre del producto..." required />
+                <input type="text" id="nombre-producto" name="nombre" placeholder="Nombre del producto..." required />
 
                 <label for="precio">Precio del producto:</label>
                 <!-- Contenedor con símbolo € y campo de precio -->
@@ -95,7 +95,7 @@
                     <span class="simbolo-euro">€</span>
                 </div>
 
-                <button type="submit">Añadir a la tarjeta</button>
+                <button type="submit">Añadir a la tienda</button>
                 <button id="cerrar-formulario" type="button">❌ Cerrar formulario</button>
             </form>
         </div>
@@ -111,7 +111,6 @@
                 <div class="nombre" id="vista-nombre">Nombre del producto</div>
                 <div class="precio" id="vista-precio">0€</div>
             </div>
-            <button type="button" class="boton-final">Añadir a la tienda</button>
         </div>
     </section>
     <!------------PIE DE PÁGINA-------->

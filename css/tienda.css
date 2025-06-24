@@ -1,328 +1,395 @@
+/* --- Ajustes para el cuerpo y el main para mejor responsividad general --- */
 html, body {
-  background: linear-gradient(to bottom, #111 25%, #e91e63 75%);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #f4f4f4;
-  font-size: 1rem; /* base de 16px */
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
+    background: linear-gradient(to bottom, #111 25%, #e91e63 75%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #f4f4f4;
+    font-size: 1rem; /* base de 16px */
+    min-height: 100vh; /* Usar min-height para que el footer se quede abajo */
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
-  flex: 1 0 auto;
+    flex: 1 0 auto;
+    padding: 1.25rem; /* Añadir padding al main para que el contenido no toque los bordes */
+    /* Eliminar margin-left y margin-right de aquí si se aplicaba a todo el main */
 }
 
 footer {
-  flex-shrink: 0;
-  text-align: center;
-  padding: 1rem 0;
-  background-color:  #222;
-  color: #f4f4f4;
-}
-
-main .galeria-products {
-  margin-left: 12.5rem;   /* 200px */
-  margin-right: 12.5rem;  /* 200px */
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  justify-items: center;
-  align-items: center;
-  gap: 1.5rem;
+    flex-shrink: 0;
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #222;
+    color: #f4f4f4;
 }
 
 main section h2 {
-  text-align: center;
-  font-size: 2rem; /* 32px */
-  color: #f4f4f4;
+    text-align: center;
+    font-size: 2rem; /* 32px */
+    color: #f4f4f4;
+    margin-bottom: 2rem; /* Espacio debajo del título de sección */
 }
 
-/* Productos */
+/* --- RESPONSIVIDAD PARA LA GALERÍA DE PRODUCTOS --- */
+main .galeria-products {
+    /* Eliminamos margin-left y margin-right fijos para que se centren y adapten */
+    margin: 0 auto; /* Centrar la galería */
+    max-width: 75rem; /* 1200px - Un ancho máximo para pantallas muy grandes */
+    
+    display: grid; 
+    /* grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr)); */
+    /* Usamos un min-width para las columnas igual al ancho de tus artículos (280px) */
+    grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr)); 
+    gap: 1.5rem; /* Espacio entre los productos, mantienes 24px */
+    justify-items: center; /* Centrar los artículos dentro de sus celdas de cuadrícula */
+    align-items: start; /* Alinear los artículos en la parte superior de sus celdas */
+    padding: 1.25rem; /* 20px de padding interno para que no toque los bordes */
+}
+
+/* Estilos para cada artículo (tarjeta de producto) */
+/* Reemplaza tu bloque 'article' existente con este */
 article {
-  background-color: #1c1c1c;
-  border-radius: 0.625rem; /* 10px */
-  padding: 1.25rem;        /* 20px */
-  text-align: center;
-  width: 17.5rem;          /* 280px */
-  height: 25rem;           /* 400px */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform 0.3s ease;
+    background-color: #1c1c1c;
+    border-radius: 0.625rem; /* 10px */
+    padding: 1.25rem; /* 20px */
+    text-align: center;
+    width: 100%; /* El artículo toma el 100% del ancho de su celda en el grid */
+    max-width: 17.5rem; /* 280px - Mantiene tu ancho preferido como máximo */
+    height: 25rem; /* 400px - Altura fija para uniformidad */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    transition: transform 0.3s ease;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); /* 4px 8px */
 }
 
 article img {
-  width: 12.5rem;          /* 200px */
-  height: 12.5rem;         /* 200px */
-  object-fit: cover;
-  border-radius: 0.5rem;   /* 8px */
-  margin-bottom: 0.625rem; /* 10px */
+    width: 12.5rem; /* 200px */
+    height: 12.5rem; /* 200px */
+    object-fit: cover;
+    border-radius: 0.5rem; /* 8px */
+    margin-bottom: 0.625rem; /* 10px */
 }
 
 article p {
-  color: #ccc;
-  margin-bottom: 0.9375rem; /* 15px */
+    color: #ccc;
+    margin-bottom: 0.9375rem; /* 15px */
+    flex-grow: 1; /* Permite que el párrafo de precio crezca y empuje el botón hacia abajo */
+    display: flex; /* Para centrar el precio si solo es una línea */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+article h3 {
+    font-size: 1.2em; /* Mantener tu tamaño relativo */
+    margin-bottom: 0.625rem; /* 10px */
+    color: #f4f4f4;
 }
 
 article:hover {
-  transform: scale(1.03);
+    transform: scale(1.03);
 }
 
-/* Botones */
-button {
-  background-color: #e91e63;
-  color: #fff;
-  border: none;
-  padding: 0.625rem 1.25rem; /* 10px 20px */
-  margin: 0.3125rem;          /* 5px */
-  border-radius: 0.3125rem;   /* 5px */
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
-  font-size: 1rem;
+/* Botones dentro de los artículos de la galería */
+article button {
+    width: 100%; /* Hacer que el botón ocupe todo el ancho de la tarjeta */
+    margin: 0; /* Eliminar el margen lateral del botón si estaba afectando el ancho */
 }
 
-button:hover {
-  background-color: #c2185b;
-}
-
-/* Aside */
+/* Aside (no debería tener margins que afecten el diseño global) */
 aside {
-  margin: 1.25rem; /* 20px */
-  text-align: center;
+    margin: 1.25rem auto; /* Centrar y añadir margen vertical */
+    text-align: center;
+    padding: 0 1.25rem; /* Añadir padding para que los botones no toquen los bordes */
 }
 
 aside button {
-  /*visibility: hidden;*/
-  background-color: #222;
+    background-color: #222;
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    margin: 0.3125rem;
+    border-radius: 0.3125rem;
 }
 
-/*///////////////////////////PARTE NUEVA////////////////////////////////*/
+
+/*///////////////////////////PARTE NUEVA DE FORMULARIO - SIN CAMBIOS AQUÍ////////////////////////////////*/
 
 /* Contenedor principal dividido en dos columnas */
 .contenedor-section {
-  display: flex;
-  min-height: 100vh; /* altura completa de la ventana */
-  position: relative; /* para posicionar título absoluto */
-  flex-direction: row;
+    display: flex;
+    min-height: 100vh; /* altura completa de la ventana */
+    position: relative; /* para posicionar título absoluto */
+    flex-direction: row;
 }
 
 .oculto {
-  display: none;
+    display: none;
 }
 
 /* Título principal centrado arriba de todo */
 .titulo-seccion {
-  position: absolute;
-  top: 1.25rem; /* 20px */
-  width: 100%;
-  text-align: center;
-  font-size: 2rem; /* 32px */
-  color: #333;
-  z-index: 1;
+    position: absolute;
+    top: 1.25rem; /* 20px */
+    width: 100%;
+    text-align: center;
+    font-size: 2rem; /* 32px */
+    color: #333; /* Ojo, este color es oscuro. Si el fondo es oscuro, cámbialo a #f4f4f4 */
+    z-index: 1;
 }
 
 /* Lado izquierdo: fondo azul, centrado contenido */
 .izquierda,
 .derecha {
-  flex: 1; /* cada lado ocupa mitad */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+    flex: 1; /* cada lado ocupa mitad */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
 }
 
 .izquierda {
-  background-color: #3498db;
+    background-color: #3498db;
 }
 
 /* Lado derecho: verde, columna para título + tarjeta */
 .derecha {
-  background-color: #2ecc71;
-  flex-direction: column;
-  padding: 1.25rem; /* 20px */
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background-color: #2ecc71;
+    flex-direction: column;
+    padding: 1.25rem; /* 20px */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Estilo formulario */
 form {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1.875rem; /* 30px */
-  border-radius: 0.625rem; /* 10px */
-  display: flex;
-  flex-direction: column;
-  gap: 0.9375rem; /* 15px */
-  width: 18.75rem; /* 300px */
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1.875rem; /* 30px */
+    border-radius: 0.625rem; /* 10px */
+    display: flex;
+    flex-direction: column;
+    gap: 0.9375rem; /* 15px */
+    width: 18.75rem; /* 300px */
 }
 
 /* Etiquetas de los inputs */
 label {
-  font-size: 1rem;
-  color: white;
+    font-size: 1rem;
+    color: white;
 }
 
 /* Inputs generales */
 input[type="text"],
 input[type="number"],
 input[type="file"] {
-  padding: 0.5rem; /* 8px */
-  border: none;
-  border-radius: 0.3125rem; /* 5px */
-  outline: none;
-  font-size: 1rem;
+    padding: 0.5rem; /* 8px */
+    border: none;
+    border-radius: 0.3125rem; /* 5px */
+    outline: none;
+    font-size: 1rem;
 }
 
-/* Botón */
+/* Botón (general, fuera de article) */
 button {
-  padding: 0.625rem; /* 10px */
-  background-color: #1abc9c;
-  border: none;
-  color: white;
-  font-weight: bold;
-  border-radius: 0.3125rem; /* 5px */
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    padding: 0.625rem; /* 10px */
+    background-color: #e91e63; /* Cambiado a tu color principal */
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 0.3125rem; /* 5px */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem; /* Mismo tamaño que otros botones */
 }
 
 button:hover {
-  background-color: #16a085;
+    background-color: #c2185b; /* Tono más oscuro al hover */
 }
 
 /* Título en el lado derecho */
 .vista-tienda {
-  text-align: center;
-  color: white;
-  margin-bottom: 1.25rem; /* 20px */
-  font-size: 1.5rem; /* 24px */
-  font-weight: bold;
+    text-align: center;
+    color: white;
+    margin-bottom: 1.25rem; /* 20px */
+    font-size: 1.5rem; /* 24px */
+    font-weight: bold;
 }
 
 /* Tarjeta que muestra la vista previa del producto */
 .tarjeta {
-  background: white;
-  color: #333;
-  border-radius: 0.625rem; /* 10px */
-  padding: 1.25rem; /* 20px */
-  width: 18.75rem; /* 300px */
-  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); /* 4px 8px */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    background: white;
+    color: #333;
+    border-radius: 0.625rem; /* 10px */
+    padding: 1.25rem; /* 20px */
+    width: 18.75rem; /* 300px */
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2); /* 4px 8px */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Imagen dentro de la tarjeta */
 .tarjeta img {
-  width: 100%;
-  height: auto;
-  border-radius: 0.3125rem; /* 5px */
-  margin-bottom: 0.9375rem; /* 15px */
+    width: 100%;
+    height: auto;
+    border-radius: 0.3125rem; /* 5px */
+    margin-bottom: 0.9375rem; /* 15px */
 }
 
 /* Nombre del producto */
 .tarjeta .nombre {
-  font-size: 1.2rem; /* 19.2px */
-  font-weight: bold;
-  margin-bottom: 0.625rem; /* 10px */
+    font-size: 1.2rem; /* 19.2px */
+    font-weight: bold;
+    margin-bottom: 0.625rem; /* 10px */
 }
 
 /* Precio del producto */
 .tarjeta .precio {
-  font-size: 1.1rem; /* 17.6px */
-  color: #27ae60;
+    font-size: 1.1rem; /* 17.6px */
+    color: #27ae60;
 }
 
 /* Contenedor para el input precio + símbolo € */
 .campo-precio {
-  display: flex; /* poner símbolo y input en línea */
-  align-items: center; /* centrar verticalmente */
-  background: white; /* fondo blanco para input + símbolo */
-  border-radius: 0.3125rem; /* 5px */
-  padding: 0 0.5rem; /* 0 8px */
+    display: flex; /* poner símbolo y input en línea */
+    align-items: center; /* centrar verticalmente */
+    background: white; /* fondo blanco para input + símbolo */
+    border-radius: 0.3125rem; /* 5px */
+    padding: 0 0.5rem; /* 0 8px */
 }
 
 /* Estilo para el símbolo € */
 .simbolo-euro {
-  margin-right: 0.3125rem; /* 5px */
-  color: #555;
-  font-weight: bold;
-  user-select: none; /* que no se pueda seleccionar */
-  font-size: 1rem;
+    margin-right: 0.3125rem; /* 5px */
+    color: #555;
+    font-weight: bold;
+    user-select: none; /* que no se pueda seleccionar */
+    font-size: 1rem;
 }
 
 /* Estilo del input dentro del contenedor */
 .campo-precio input {
-  border: none;
-  flex: 1; /* que tome el espacio restante */
-  padding: 0.5rem; /* 8px */
-  border-radius: 0.3125rem; /* 5px */
-  outline: none;
-  font-size: 1rem;
+    border: none;
+    flex: 1; /* que tome el espacio restante */
+    padding: 0.5rem; /* 8px */
+    border-radius: 0.3125rem; /* 5px */
+    outline: none;
+    font-size: 1rem;
 }
 
-.boton-final {
-  margin-top: 1rem; /* 16px */
-  padding: 0.625rem 1.25rem; /* 10px 20px */
-  background-color: #1abc9c;
-  color: white;
-  border: none;
-  border-radius: 0.3125rem; /* 5px */
-  font-weight: bold;
-  cursor: pointer;
+.boton-final { /* Este botón ya no debería existir en tu HTML para el formulario */
+    margin-top: 1rem; /* 16px */
+    padding: 0.625rem 1.25rem; /* 10px 20px */
+    background-color: #1abc9c;
+    color: white;
+    border: none;
+    border-radius: 0.3125rem; /* 5px */
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .imagen-contenedor {
-  position: relative;
-  display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .boton-cruz {
-  position: absolute;
-  top: 0.3125rem; /* 5px */
-  right: 0.3125rem; /* 5px */
-  background-color: rgba(255, 255, 255, 0);
-  border: none;
-  border-radius: 50%;
-  font-size: 1rem; /* 16px */
-  width: 1.75rem; /* 28px */
-  height: 1.75rem; /* 28px */
-  cursor: pointer;
-  display: none;
-  padding: 0;
-  line-height: 1;
+    position: absolute;
+    top: 0.3125rem; /* 5px */
+    right: 0.3125rem; /* 5px */
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem; /* 16px */
+    width: 1.75rem; /* 28px */
+    height: 1.75rem; /* 28px */
+    cursor: pointer;
+    display: none;
+    padding: 0;
+    line-height: 1;
 }
 
 .boton-cruz:hover {
-  background-color: #ffffff;
+    background-color: #ffffff;
 }
 
 /* Responsividad básica para pantallas pequeñas */
 @media (max-width: 48rem) { /* 768px */
-  .contenedor-section {
-    flex-direction: column;
-    height: auto;
-    min-height: 100vh;
-  }
+    .contenedor-section {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
 
-  .izquierda,
-  .derecha {
-    width: 100%;
-    height: auto;
-    padding: 1.25rem 0;
-  }
+    .izquierda,
+    .derecha {
+        width: 100%;
+        height: auto;
+        padding: 1.25rem 0;
+    }
 
-  form,
-  .tarjeta {
-    width: 90%;
-    max-width: 25rem; /* 400px */
-  }
+    form,
+    .tarjeta {
+        width: 90%;
+        max-width: 25rem; /* 400px */
+    }
 
-  .titulo-seccion {
-    position: static;
-    margin-bottom: 1.25rem; /* 20px */
-  }
+    .titulo-seccion {
+        position: static;
+        margin-bottom: 1.25rem; /* 20px */
+        color: #f4f4f4; /* Asegurar que sea visible en fondo oscuro */
+    }
+}
+
+/* --- Media Queries ESPECÍFICAS para la GALERÍA DE PRODUCTOS --- */
+
+/* Para pantallas medianas (tablets, hasta 60rem/960px) */
+@media (max-width: 60rem) { /* 960px */
+    main .galeria-products {
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); /* Min 240px de ancho por columna */
+        padding: 1rem; /* Un poco menos de padding */
+    }
+
+    article {
+        max-width: 15rem; /* Reducir el max-width de las tarjetas */
+        height: 22rem; /* Reducir altura si es necesario */
+    }
+
+    article img {
+        width: 10rem; /* 160px */
+        height: 10rem; /* 160px */
+    }
+}
+
+/* Para pantallas muy pequeñas (móviles, hasta 30rem/480px) */
+@media (max-width: 30rem) { /* 480px */
+    main .galeria-products {
+        grid-template-columns: 1fr; /* Una sola columna */
+        padding: 0.75rem; /* Menos padding aún */
+        gap: 1rem; /* Menos espacio entre ítems */
+    }
+
+    article {
+        max-width: 17.5rem; /* 280px - Volvemos a tu ancho original si es posible, ya que ahora es una columna */
+        height: auto; /* Dejar que la altura se ajuste automáticamente */
+    }
+
+    article img {
+        width: 100%; /* La imagen ocupa todo el ancho disponible */
+        height: 12.5rem; /* Mantener una altura mínima */
+        object-fit: contain; /* Ajustar la imagen dentro del espacio */
+    }
+
+    aside {
+        margin: 1rem auto;
+    }
+
+    aside button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
 }

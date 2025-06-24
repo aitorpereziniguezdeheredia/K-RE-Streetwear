@@ -1,9 +1,4 @@
-// js/tienda.js
-
 // Importar funciones de utilidad del carrito
-// Se mantienen los imports aunque addToCart ya no se use directamente aquí,
-// por si se decidiera reintroducir una funcionalidad de "compra rápida" diferente,
-// o si otras partes del script lo requirieran.
 import { getCartItems, saveCartItems, addToCart } from './cartUtils.js';
 
 // Variables globales
@@ -68,7 +63,7 @@ function activarModoEliminar() {
   modoEliminarActivo = !modoEliminarActivo;
   const botonModoEliminar = document.getElementById("modo-eliminar");
   if (botonModoEliminar) {
-    botonModoEliminar.textContent = modoEliminarActivo ? "Desactivar Modo Eliminar" : "Activar Modo Eliminar";
+    botonModoEliminar.textContent = modoEliminarActivo ? "Desactivar Modo Eliminar" : "Eliminar";
   }
   renderizarGaleria();
 }
