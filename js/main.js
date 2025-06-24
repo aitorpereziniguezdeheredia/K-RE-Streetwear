@@ -6,6 +6,7 @@ const modalCloseBtn = document.getElementById("modalClose");
 
 // Nueva sección para mostrar detalles completos en modo "ver"
 const modalDetalles = document.getElementById("modalDetalles");
+const modalCloseDetailBtn = document.querySelector("#modalDetalles .modal-close-detail"); // Nueva referencia al botón de cerrar de detalles
 
 const usuariosPorPagina = 10;
 let paginaActual = 1;
@@ -159,10 +160,11 @@ window.abrirModal = function(id, modo = 'ver') {
       <p><strong>Dirección completa:</strong> ${usuario.profile?.address?.street || "N/A"}, ${usuario.profile?.address?.zip || "N/A"}</p>
       <p><strong>Fecha de registro:</strong> ${usuario.registeredDate || "N/A"}</p>
       <p><strong>Notas:</strong> ${usuario.notes || "N/A"}</p>
+      <button  title="Cerrar"><a href="usuarios.html">Cerrar</a></button>
     `;
 
     // Cambiar texto botón cerrar
-    modalCloseBtn.textContent = 'Cerrar';
+    modalCloseDetailBtn.textContent = 'Cerrar';
   }
 };
 
@@ -200,6 +202,26 @@ modalForm.onsubmit = e => {
 inputBusqueda.addEventListener("input", () => {
   paginaActual = 1;
   renderTabla(usuariosFiltrados());
+});
+
+// Asegura que el DOM esté completamente cargado antes de ejecutar el script.
+document.addEventListener("DOMContentLoaded", function() {
+    // Referencias a elementos clave del DOM: checkbox del menú y la etiqueta <body>.
+    const menuCheckbox = document.getElementById("menu-tienda");
+    const body = document.body;
+
+    // Si el checkbox existe, añade un listener para cambios de estado.
+    if (menuCheckbox) {
+        menuCheckbox.addEventListener("change", function() {
+            // Alterna la clase "menu-open" en el <body>.
+            // Esta clase es usada en CSS para desplazar el contenido o activar el menú.
+            if (this.checked) {
+                body.classList.add("menu-open");
+            } else {
+                body.classList.remove("menu-open");
+            }
+        });
+    }
 });
 
 // Carga inicial

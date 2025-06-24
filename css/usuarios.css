@@ -15,6 +15,18 @@ html, body {
 
 main {
   flex: 1 0 auto;
+  transition: margin-left 0.3s ease; /* Añade esta línea para una transición suave */
+}
+
+h1 {
+  transition: margin-left 0.3s ease; /* Añade esta línea para una transición suave */
+}
+
+body.menu-open main {
+    margin-left: 170px;
+}
+body.menu-open h1 {
+    margin-left: 170px;
 }
 
 footer {
@@ -234,7 +246,6 @@ button:hover {
   color: #222;
   font-size: 1rem;
   line-height: 1.5;
-  white-space: pre-wrap;
   user-select: text;
 }
 
@@ -248,6 +259,10 @@ button:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
+body.menu-open main {
+      margin-left: 0; /* En móviles, el main no se desplaza, el menú es un overlay */
+  }
+
   table,
   thead,
   tbody,

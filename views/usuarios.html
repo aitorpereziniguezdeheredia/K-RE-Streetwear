@@ -83,14 +83,13 @@
                     <div class="form-group"><label>Ciudad: <input name="city" type="text" /></label></div>
                     <div class="modal-actions">
                         <button type="submit">Guardar</button>
-                        <button type="button" id="modalClose">Cerrar</button>
+                        <button type="button" id="modalClose"></button>
                     </div>
                 </form>
 
                 <!-- Área para ver detalles completos del usuario -->
-                <div id="modalDetalles" style="display:none; font-size: 0.9rem; line-height: 1.4; padding: 1rem;">
-                    <button type="button" id="modalClose">Cerrar</button>
-                    <!-- Aquí se cargan los detalles en modo "ver" -->
+                <div id="modalDetalles">
+                    <button type="button" class="modal-close-detail">Cerrar</button> 
                 </div>
             </div>
         </div>
