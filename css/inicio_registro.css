@@ -1,0 +1,464 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background: linear-gradient(to bottom, #111 25%, #e91e63 75%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-size: cover;
+    overflow: hidden; /* Evita el scroll principal de la página */
+}
+
+img {
+    width: 280px;
+    height: 280px;
+}
+/* El .container-form es el contenedor principal de cada tarjeta (registro/login) */
+.container-form {
+  display: flex;
+  border-radius: 20px;
+  box-shadow: 0 5px 7px rgba(0, 0, 0, .1);
+  width: 900px; /* Ancho fijo para pantallas grandes */
+
+  height: auto;
+  min-height: 500px;
+  max-height: 90vh;
+  overflow: hidden; /* Oculta el scroll del contenedor principal */
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Posición FINAL centrada para ambas tarjetas.
+     Esta es la posición a la que llegan cuando están completamente visibles. */
+  transform: translate(-50%, -50%);
+  opacity: 1; /* Completamente visible por defecto */
+
+  /* TRANSICIÓN para cuando aparece:
+     Aplicada cuando se remueve una de las clases de movimiento (e.g., .move-from-top).
+     La visibilidad y pointer-events cambian instantáneamente al inicio (0s duración, 0s delay). */
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out, visibility 0s 0s, pointer-events 0s 0s;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* CLASE BASE PARA OCULTAR (visibilidad, opacidad y no-interacción) */
+/* Esta clase se aplica a una tarjeta cuando no está activa en la pantalla.
+   Solo la oculta lógicamente, pero las animaciones de entrada/salida se controlan con otras clases. */
+.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* IMPORTANTE: Si un elemento tiene 'hide' y no tiene una clase de movimiento,
+     debe estar en su posición 'desactivada' sin animación al aplicarse.
+     Por eso, 'transition: none;' es vital aquí para evitar transiciones al inicio si ya está oculto. */
+  transition: none;
+}
+
+
+/* ESTADOS DE ENTRADA Y SALIDA (para las animaciones de movimiento) */
+
+/* Tarjeta que entra (Viene desde ARRIBA) */
+.move-from-top {
+  /* Posición inicial de la tarjeta que va a aparecer.
+     Se mueve desde arriba y está invisible. */
+  transform: translate(-50%, -150%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* Transición nula al aplicar esta clase, para que salte a la posición inicial sin animar.
+     La animación ocurre cuando esta clase se remueve, y la tarjeta va a la posición de .container-form. */
+  transition: none;
+}
+
+/* Tarjeta que sale (Va hacia ABAJO) */
+.move-to-bottom {
+  /* Posición final de la tarjeta que va a desaparecer.
+     Se mueve hacia abajo y se vuelve invisible. */
+  transform: translate(-50%, 150%);
+  opacity: 0;
+  /* Transición para cuando se va:
+     Animación de transform y opacidad.
+     Visibilidad y pointer-events se cambian con un retraso para que la animación termine antes de ocultarse por completo. */
+  transition: transform 0.8s ease-in, opacity 0.8s ease-in, visibility 0s 0.8s, pointer-events 0s 0.8s;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+
+/* Estilos para el panel de información (lado izquierdo, texto "Bienvenido" / "Crear una cuenta") */
+.information {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea los bloques (h2, p, button) a la izquierda */
+  justify-content: center; /* Centra verticalmente el contenido dentro de 'information' */
+  background-color: #ffffff;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding: 20px;
+  flex-grow: 1; /* Permite que ocupe la altura disponible */
+  min-height: 100%; /* Asegura que ocupe al menos el 100% de la altura del padre */
+  box-sizing: border-box;
+}
+
+.info-childs {
+  width: 100%;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centra el contenido verticalmente si hay espacio */
+  flex-grow: 1; /* Permite que crezca dentro de .information */
+  min-height: 0; /* Importante para que flex-grow funcione correctamente con overflow */
+  gap: 20px; /* Añade espacio entre los elementos hijos */
+  align-items: flex-start; /* Asegura que los items dentro de info-childs también se alineen a la izquierda */
+}
+
+/* Estilos para los elementos dentro de .info-childs */
+.info-childs h2 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.info-childs p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center; 
+}
+
+.info-childs input[type="button"] {
+    background-color: transparent;
+    color: #000000;
+    border: 2px solid #000000;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: block; /* Asegura que sea un elemento de bloque para que margin: auto funcione */
+    margin: 0 auto; /* Centra horizontalmente el botón */
+}
+
+.info-childs input[type="button"]:hover {
+    background-color: #4a82a0;
+    color: #fff;
+}
+
+/* Asegura que los elementos dentro de info-childs no se encojan */
+.info-childs h2,
+.info-childs p,
+.info-childs input[type="button"] {
+    flex-shrink: 0;
+}
+
+/* Estilos para el panel del formulario (lado derecho, donde están los inputs) */
+.form-information {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-height: 100%;
+  align-items: center; /* Centra horizontalmente a form-information-childs */
+  justify-content: center; /* Centra verticalmente a form-information-childs (si form-information-childs no ocupa todo el espacio) */
+  text-align: center;
+  background-color: #f8f8f800;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Contenedor de los hijos del formulario (h2, icons, p, form) */
+/* Esta es la regla general que se aplica a AMBOS formularios */
+.form-information-childs {
+  padding: 0 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Permite que ocupe todo el espacio vertical disponible */
+  min-height: 0; /* Importante para el cálculo de flex-grow */
+  /* Por defecto, los elementos se alinean al inicio (arriba) */
+  justify-content: flex-start;
+  /* Por defecto, los elementos se centran horizontalmente */
+  align-items: center;
+}
+
+/* Reglas ESPECÍFICAS para la tarjeta de REGISTRO */
+.container-form.register .form-information-childs {
+    overflow-y: auto; /* Scroll para cuando el contenido del registro exceda */
+    padding-right: 15px; /* Espacio para la barra de scroll */
+}
+
+/* Estilos para el formulario real dentro del REGISTRO */
+.container-form.register .form-information-childs .form {
+    flex-grow: 1; /* Permite que el formulario de registro crezca y empuje el scroll si es necesario */
+}
+
+
+/* === ESTILO ESPECÍFICO PARA LA TARJETA DE LOGIN === */
+/* Seleccionamos el .form-information-childs que está dentro del .login container */
+.container-form.login .form-information-childs {
+    justify-content: center; /* Centra verticalmente TODO el contenido del formulario de login */
+    align-items: center; /* Centra horizontalmente los elementos (h2, icons, p, form) */
+    overflow-y: hidden; /* Oculta el scroll para el login, ya que no se espera mucho contenido */
+    padding-right: 0; /* No necesitamos padding extra para scrollbar si no hay scroll */
+}
+
+/* Estilos para el formulario real dentro del LOGIN */
+.container-form.login .form-information-childs .form {
+    flex-grow: 0; /* El formulario NO intentará ocupar todo el espacio restante; su altura se adapta al contenido */
+    width: 100%; /* Asegura que ocupe el ancho disponible para que sus inputs se centren */
+}
+
+/* Aseguramos que los elementos no-formulario (h2, icons, p) no se encojan */
+.form-information-childs h2 {
+    flex-shrink: 0;
+    color: #fff;
+}
+.form-information-childs .icons,
+.form-information-childs p {
+    flex-shrink: 0;
+}
+
+/* Estilos generales para el elemento <form> (aplicable a ambos formularios) */
+.form {
+  margin: 30px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Aumenta el espacio vertical entre los campos y el botón */
+  height: auto;
+  min-height: 0;
+  padding-right: 0;
+  width: 100%; /* Asegura que el formulario ocupe el 100% del ancho de su padre */
+}
+
+/* Estilos de los <label> que contienen los campos de entrada */
+.form label {
+  display: flex;
+  align-items: center; /* Alinea el icono y el input en el centro vertical */
+  border-radius: 20px;
+  padding: 8px 15px; /* Aumenta el padding interno del label para que el campo se vea más grande */
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+  flex-shrink: 0;
+  width: 100%; /* Asegura que el label ocupe todo el ancho disponible */
+}
+
+/* Estilos de los <input> dentro de los labels */
+.form label input {
+  width: 100%;
+  padding: 8px 10px; /* Aumenta el padding interno del input */
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  color: #333;
+  font-size: 1rem; /* Asegura un tamaño de fuente legible */
+}
+
+/* Estilos de los iconos dentro de los labels */
+.form label i {
+  color: #a7a7a7;
+  margin-right: 10px; /* Espacio entre el icono y el campo de texto */
+  font-size: 1.2rem; /* Tamaño del icono */
+}
+
+/* Estilos para los botones de tipo submit */
+.form input[type="submit"] {
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 20px;
+  border: none;
+  padding: 12px 15px; /* Aumenta el padding del botón de submit */
+  cursor: pointer;
+  margin-top: 15px; /* Un poco más de espacio arriba del botón */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 1rem; /* Un poco más grande el texto del botón */
+  font-weight: 600;
+}
+
+.form input[type="submit"]:hover {
+  background-color: #4a82a0;
+    color: #fff;
+}
+
+/* PERSONALIZACION DE ALERTAS Y MENSAJES */
+.form div .alerta {
+  width: 100%;
+  text-align: left;
+  border-radius: 7px;
+  margin-bottom: 10px;
+  font-size: .8rem;
+  flex-shrink: 0;
+}
+
+.form > .alerta-error,
+.form > .alerta-exito {
+  display: none;
+}
+
+.form .alertaError {
+  display: block;
+  background-color: #F66060;
+  padding: .5rem 1rem;
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: .8rem;
+}
+
+.form .alertaExito {
+  display: block;
+  background-color: #0ca828;
+  padding: .5rem 1rem;
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: .8rem;
+}
+
+.form .error {
+  outline: solid 2px #9d2222;
+}
+
+/* Estilos para la barra de desplazamiento (para el formulario de registro si el contenido excede) */
+.form-information-childs::-webkit-scrollbar {
+    width: 8px;
+}
+
+.form-information-childs::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.form-information-childs::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.form-information-childs::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+/* RESPONSIVE DESIGN */
+
+@media screen and (max-width:920px) {
+    .container-form {
+        width: 90%; /* Reduce el ancho de la tarjeta en pantallas medianas */
+    }
+}
+
+@media screen and (max-width:750px) {
+  html {
+    font-size: 12px; /* Reduce el tamaño base de fuente para pantallas más pequeñas */
+  }
+}
+
+@media screen and (max-width:580px) {
+  html {
+    font-size: 15px; /* Aumenta el tamaño base de fuente para móviles pequeños */
+  }
+
+  .container-form {
+    height: auto;
+    flex-direction: column; /* Apila los paneles verticalmente en móviles */
+    min-height: unset;
+    max-height: unset; /* Sin límite de altura en móvil para que el contenido fluya */
+    width: 100%; /* Ocupa todo el ancho en móvil */
+    margin: 20px auto; /* Centra la tarjeta y añade margen superior/inferior */
+    overflow-y: unset; /* Sin scroll principal en la tarjeta en móvil */
+    overflow-x: hidden;
+    box-shadow: none; /* Elimina la sombra en móvil para un diseño más limpio */
+    position: static; /* En móvil, la tarjeta fluye con el documento, no es absoluta */
+    transform: none; /* Desactiva el transform en móvil para que no interfiera */
+    opacity: 1; /* Asegura que sea visible */
+    visibility: visible; /* Asegura que sea visible */
+    pointer-events: auto; /* Permite interacciones */
+    /* Resetea las transiciones para móvil para evitar comportamientos no deseados */
+    transition: none; 
+  }
+
+  .information {
+    width: 100%; /* Ocupa todo el ancho */
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 0px; /* Elimina el redondeo inferior izquierdo */
+    border-bottom-right-radius: 0; /* Elimina el redondeo inferior derecho */
+    flex-grow: 0; /* Ya no necesita crecer en altura si es columna */
+    min-height: unset;
+    align-items: center; /* Centra los items verticalmente en móvil */
+    text-align: center; /* Centra el texto */
+  }
+
+  /* El botón de la información también centrado en móvil */
+  .info-childs input[type="button"] {
+      margin: 0 auto;
+  }
+
+  .form-information {
+    width: 100%; /* Ocupa todo el ancho */
+    border-bottom-left-radius: 20px; /* Añade redondeo inferior izquierdo */
+    border-top-right-radius: 0; /* Elimina el redondeo superior derecho */
+    overflow-y: unset; /* En móvil, el formulario no debería tener scroll propio */
+    padding-right: 20px; /* Vuelve al padding normal en móvil */
+  }
+
+  /* Para la parte de login en móvil, también centrar */
+  .container-form.login .form-information-childs {
+      justify-content: center;
+      overflow-y: unset; /* Asegúrate que no haya scroll en móvil para esta sección */
+      padding-right: 0;
+  }
+
+  /* En móvil, las clases de movimiento deben ser ignoradas. Usamos display: none. */
+  .hide,
+  .move-from-top,
+  .move-to-bottom {
+      display: none !important; /* Fuerza la ocultación total sin animación */
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      transform: none !important; /* Resetea el transform para evitar movimientos no deseados */
+      transition: none !important; /* Sin transición en móvil para estas clases */
+  }
+
+  /* Cuando una tarjeta debe ser visible en móvil, se le remueven esas clases y display:flex */
+  .container-form.register:not(.hide):not(.move-from-top):not(.move-to-bottom),
+  .container-form.login:not(.hide):not(.move-from-top):not(.move-to-bottom) {
+      display: flex !important; /* Asegura que la tarjeta activa se muestre como flex */
+  }
+
+
+  /* Asegura que en móvil los contenedores de formulario no tengan scroll si no lo necesitan */
+  .form-information-childs {
+      overflow-y: unset;
+      padding-right: 0;
+      min-height: unset;
+  }
+
+  /* Ajustes para el tamaño de los campos en responsive */
+  .form label {
+    padding: 10px 15px; /* Un poco más de padding en móvil */
+  }
+
+  .form label input {
+    padding: 10px; /* Asegura buen padding en móvil */
+    font-size: 1rem;
+  }
+
+  .form input[type="submit"] {
+    padding: 12px 20px; /* Ajusta padding del botón en móvil */
+    font-size: 1rem;
+  }
+}
